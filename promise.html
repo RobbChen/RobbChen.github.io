@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+<script type="text/javascript">
+      // 禁止复制
+   document.oncopy = function () {
+     return false;
+   };
+window.addEventListener('unhandledrejection', event => {
+    event && event.preventDefault()
+    console.log('捕捉未处理的reject', event)
+    alert("has no reject")
+})
+
+</script>
+<input type="text" oncopy="myFunction()" onclick="testPromise()" value="尝试拷贝文本">
+<p id="demo" >no long copy</p>
+<button id="make-promise">Make a promise!</button>
+<div id="log"></div>
+<script>
+function myFunction() {
+    return false;
+}
+function testPromise() {
+  // We make a new promise: we promise a numeric count of this promise,
+  // starting from 1 (after waiting 3s)
+  const p1 = new Promise((resolve, reject) => {
+    // The executor function is called with the ability
+    // to resolve or reject the promise
+
+     reject(6)
+  // We define what to do when the promise is resolved with the then() call,
+  // and what to do when the promise is rejected with the catch() call
+}
+</script>
+
+</body>
+</html>
