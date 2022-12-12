@@ -17,9 +17,9 @@ window.addEventListener('unhandledrejection', event => {
 })
 
 </script>
-<input type="text" oncopy="myFunction()" onclick="testPromise()" value="尝试拷贝文本">
+<input type="text" oncopy="myFunction()" value="尝试拷贝文本">
 <p id="demo" >no long copy</p>
-<button id="make-promise">Make a promise!</button>
+<button id="make-promise" onclick="testPromise()">Make a promise!</button>
 <div id="log"></div>
 <script>
 function myFunction() {
@@ -35,8 +35,11 @@ function testPromise() {
      reject(6)
   // We define what to do when the promise is resolved with the then() call,
   // and what to do when the promise is rejected with the catch() call
+  }
 }
 </script>
 
 </body>
 </html>
+
+
