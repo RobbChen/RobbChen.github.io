@@ -15,11 +15,16 @@ window.addEventListener('unhandledrejection', event => {
     console.log('捕捉未处理的reject', event)
     alert("has no reject")
 })
+new Promise((resolve, reject) => {
+    console.log('捕捉未处理的reject2', event)
+    reject(5)
+})
 
 </script>
 <input type="text" oncopy="myFunction()" value="尝试拷贝文本">
-<p id="demo" >no long copy2</p>
-<button id="make-promise" onclick="testPromise()">Make a promise2!</button>
+<p id="test">hello world2 </p>
+<p id="demo" >no long copy test2</p>
+<button id="make-promise" onclick="testPromise()">Make a promise!</button>
 <div id="log"></div>
 <script>
 function myFunction() {
