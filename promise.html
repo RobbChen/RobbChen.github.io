@@ -32,6 +32,7 @@ function myFunction() {
     return true;
 }
 function testPromise() {
+  console.log('enter testPromise')
   // We make a new promise: we promise a numeric count of this promise,
   // starting from 1 (after waiting 3s)
   const p1 = new Promise((resolve, reject) => {
@@ -42,6 +43,7 @@ function testPromise() {
   // We define what to do when the promise is resolved with the then() call,
   // and what to do when the promise is rejected with the catch() call
   });
+  console.log('over testPromise')
 }
 </script>
 
