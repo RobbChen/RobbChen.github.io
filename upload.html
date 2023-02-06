@@ -10,12 +10,27 @@
 <form name="person"  method="post" enctype="multipart/form-data">
   
   <input name="name" value="John">
-  <input name="surname" value="Smith" onclick="onClickSubmit">
+  <input name="surname" value="Smith" onclick="onClickSubmit()">
   <input type="file" name="test">
-  <button onclick="onClickSubmit">Submit</button>
+  <button onclick="onClickSubmit()">Submit</button>
   </form>
   
 <script>
+   // 从表单预填充 FormData
+  let formData = new FormData(document.forms.person);
+
+  // 附加一个字段
+  formData.append("middle", "Lee1");
+  formData.append("end", "Lee1");
+  
+  
+  // 将其发送出去
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", "/article/xmlhttprequest/post/user");
+  xhr.send(formData);
+
+  xhr.onload = () => alert(xhr.response);
+  
 function onClickSubmit()
 {
   // 从表单预填充 FormData
