@@ -199,53 +199,7 @@
 
     <h2>Using the POST method</h2>
     <h3>Enctype: application/x-www-form-urlencoded (default)</h3>
-
-    <form
-      action="register.php"
-      method="post"
-      onsubmit="AJAXSubmit(this); return false;">
-      <fieldset>
-        <legend>Registration example</legend>
-        <p>
-          <label>First name:
-            <input type="text" name="firstname" />
-          </label><br />
-          <label>Last name:
-            <input type="text" name="lastname" />
-          </label>
-        </p>
-        <p>
-          <input type="submit" value="Submit" />
-        </p>
-      </fieldset>
-    </form>
-
-    <h3>Enctype: text/plain</h3>
-
-    <form
-      action="register.php"
-      method="post"
-      enctype="text/plain"
-      onsubmit="AJAXSubmit(this); return false;">
-      <fieldset>
-        <legend>Registration example</legend>
-        <p>
-          <label>Your name:
-            <input type="text" name="user" />
-          </label>
-        </p>
-        <p>
-          <label>Your message:<br />
-            <textarea name="message" cols="40" rows="8"></textarea>
-          </label>
-        </p>
-        <p>
-          <input type="submit" value="Submit" />
-        </p>
-      </fieldset>
-    </form>
-
-    <h3>Enctype: multipart/form-data</h3>
+<h3>Enctype: multipart/form-data</h3>
 
     <form
       action="register.php"
@@ -300,5 +254,51 @@
         </p>
       </fieldset>
     </form>
+    <form
+      action="register.php"
+      method="post"
+      onsubmit="AJAXSubmit(this); return false;">
+      <fieldset>
+        <legend>Registration example</legend>
+        <p>
+          <label>First name:
+            <input type="text" name="firstname" />
+          </label><br />
+          <label>Last name:
+            <input type="text" name="lastname" />
+          </label>
+        </p>
+        <p>
+          <input type="submit" value="Submit" />
+        </p>
+      </fieldset>
+    </form>
+
+    <h3>Enctype: text/plain</h3>
+
+    <form
+      action="register.php"
+      method="post"
+      enctype="text/plain"
+      onsubmit="AJAXSubmit(this); return false;">
+      <fieldset>
+        <legend>Registration example</legend>
+        <p>
+          <label>Your name:
+            <input type="text" name="user" />
+          </label>
+        </p>
+        <p>
+          <label>Your message:<br />
+            <textarea name="message" cols="40" rows="8"></textarea>
+          </label>
+        </p>
+        <p>
+          <input type="submit" value="Submit" />
+        </p>
+      </fieldset>
+    </form>
+
+    
   </body>
 </html>
