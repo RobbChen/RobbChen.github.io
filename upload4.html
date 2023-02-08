@@ -177,25 +177,7 @@
     </script>
   </head>
   <body>
-    <h1>Sending forms with XHR</h1>
 
-    <h2>Using the GET method</h2>
-
-    <form
-      action="register.php"
-      method="get"
-      onsubmit="AJAXSubmit(this); return false;">
-      <fieldset>
-        <legend>Registration example</legend>
-        <p>
-          <label>First name: <input type="text" name="firstname" /></label><br />
-          <label>Last name: <input type="text" name="lastname" /></label>
-        </p>
-        <p>
-          <input type="submit" value="Submit" />
-        </p>
-      </fieldset>
-    </form>
 
     <h2>Using the POST method</h2>
     <h3>Enctype: application/x-www-form-urlencoded (default)</h3>
@@ -298,7 +280,25 @@
         </p>
       </fieldset>
     </form>
+    <h1>Sending forms with XHR</h1>
 
+    <h2>Using the GET method</h2>
+
+    <form
+      action="register.php"
+      method="get"
+      onsubmit="AJAXSubmit(this); return false;">
+      <fieldset>
+        <legend>Registration example</legend>
+        <p>
+          <label>First name: <input type="text" name="firstname" /></label><br />
+          <label>Last name: <input type="text" name="lastname" /></label>
+        </p>
+        <p>
+          <input type="submit" value="Submit" />
+        </p>
+      </fieldset>
+    </form>
     
   </body>
 </html>
