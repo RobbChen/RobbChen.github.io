@@ -3,6 +3,60 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <body>
 
+  <div data-role="content" style="padding:0;height:380px;" class="ui-content" role="main">
+<div class="content">
+<div class="shadow"></div>
+<form class="form" method="post" id="auth_login_form">
+
+
+
+
+
+<!-- aruba iap认证的参数 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<input type="password" autocomplete="off" style="position: absolute;top: -10000px;left: -10000px;" data-role="none">
+<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="text" id="username" name="username" class="text_input" style="padding-left: 15px !important;" placeholder="用户名"></div>
+<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-focus"><input type="password" autocomplete="off" id="pwd" class="text_input" style="padding-left: 15px !important;" placeholder="密 码"></div>
+<div class="validate_div" style="display:none;">
+<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset validate_input">
+<input type="text" id="validatecode" name="validatecode" class="validate_text" data-role="none" placeholder="验证码">
+</div>
+<img src="http://172.16.225.14:8099/portal/validate/code?act=getValidateCode&amp;width=80&amp;height=36&amp;type=authLogin&amp;_dc=1678355603190" id="validate_code" class="validate_img" title="看不清楚？点击刷新！">
+</div>
+
+
+<a id="loginBtn" data-role="button" class="sub_btn ui-link ui-btn ui-shadow ui-corner-all" style="background:#38c; color:#FFF;" role="button">登  录</a>
+
+<div class="wrap">
+<div id="mobile_left">
+<span id="mobile_explanatoryNote" style="white-space:normal;"></span>
+</div>
+</div>
+
+
+
+<div style="display: none;" id="confirmDlg-placeholder"><!-- placeholder for confirmDlg --></div>
+
+<div style="display: none;" id="timeoutConfirmDlg-placeholder"><!-- placeholder for timeoutConfirmDlg --></div>
+
+</form>
+</div>
+</div>
 <p> Hello world</p>
 </body>
 </html>
