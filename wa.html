@@ -1,0 +1,1282 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<!--
+<html>
+	<head></head>
+	<body></body>
+</html>
+-->
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=0.5, maximum-scale=0.5">
+<meta name="application-name" content="web">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta content="telephone=no" name="format-detection" />
+<!-- 禁止微信缓存页面问题 -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<title>充值</title>
+
+
+
+<link rel="stylesheet" href="/web/css/swiper.min.css">
+<link rel="stylesheet" href="/web/css/custom.css?v=201807261152">
+<link rel="stylesheet" href="/web/css/core.css?v=201709161937">
+<link rel="stylesheet" href="/web/css/jquery-ui.min.css">
+
+<script src="/web/scripts/jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="/web/scripts/custom.js?v=23"></script>
+<script type="text/javascript" src="/web/scripts/swiper.jquery.min.js"></script>
+<script src="/web/scripts/fastclick.js"></script>
+<script src="/web/scripts/jquery-ui.min.js"></script>
+<script src="/web/scripts/jquery.ui.datepicker-zh-CN.min.js"></script>
+<script>
+	$(function() {  
+	    FastClick.attach(document.body);  
+	    var notNeed = FastClick.notNeeded(document.body);
+	    $.fn.triggerFastClick=function(){
+	        this.trigger("click");
+	            if(!notNeed){
+	            this.trigger("click");
+	        }
+	    }
+	});
+	var cookie = {
+      set:function(key,val,time){//设置cookie方法
+          var date=new Date(); //获取当前时间
+          var expiresDays=time;  //将date设置为n天以后的时间
+          date.setTime(date.getTime()+expiresDays*24*3600*1000); //格式化为cookie识别的时间
+          document.cookie=key + "=" + val +";expires="+date.toGMTString() + ";path=" + "/";  //设置cookie
+      },
+      get:function(key){//获取cookie方法
+          /*获取cookie参数*/
+          var getCookie = document.cookie.replace(/[ ]/g,"");  //获取cookie，并且将获得的cookie格式化，去掉空格字符
+          var arrCookie = getCookie.split(";")  //将获得的cookie以"分号"为标识 将cookie保存到arrCookie的数组中
+          var tips;  //声明变量tips
+          for(var i=0;i<arrCookie.length;i++){   //使用for循环查找cookie中的tips变量
+              var arr=arrCookie[i].split("=");   //将单条cookie用"等号"为标识，将单条cookie保存为arr数组
+              if(key==arr[0]){  //匹配变量名称，其中arr[0]是指的cookie名称，如果该条变量为tips则执行判断语句中的赋值操作
+                  tips=arr[1];   //将cookie的值赋给变量tips
+                  break;   //终止for循环遍历
+              }
+          }
+          return tips;
+      },
+      delete:function(key){ //删除cookie方法
+          var date = new Date(); //获取当前时间
+          date.setTime(date.getTime()-10000); //将date设置为过去的时间
+          document.cookie = key + "=v; expires =" +date.toGMTString();//设置cookie
+      }
+  }
+</script>
+<style type="text/css">
+.all-page-overlay {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	visibility: hidden;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	opacity: 0;
+	background: rgba(100, 100, 100, 0.3);
+	/* -webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s; */
+}
+.all-page-overlay-show {
+    opacity: 1;
+    visibility: visible;
+}
+</style>
+
+<script>
+	$(document).ready(function(){
+		var uStr = '{"cardColor":"ff2c4c","chargeMoney":"471.00","discount":"100","lastChargeLog":{"changeMoney":"0.00","chargeMoney":"0.00","eventType":"3","giveMoney":"0.00","goodsMoney":"0.00","leftMoney":"138.40","limitParam1":0,"limitParam2":0,"logId":"7951602","shopId":"9292","time":"2023-03-21 09:59:08","userId":"635558"},"lastConsumeLog":{"changeMoney":"37.40","chargeMoney":"0.00","eventType":"4","giveMoney":"0.00","goodsMoney":"37.40","leftMoney":"137.40","limitParam1":0,"limitParam2":0,"logId":"7735810","shopId":"9292","time":"2023-02-11 14:19:20","userId":"635558"},"limitParam1":0,"limitParam2":0,"logo":"","money":"138.40","moneyB":"115.49","moneyZ":"22.91","name":"朱士广","payword":"123456","point":"0.00","rankId":"01","regTime":"2022-02-20 19:28:41","shopId":"9292","tel":"15945302602","userId":"635558"}'.replace(/[\r\n]/g,"");
+		var shopUser = JSON.parse(uStr);
+		
+		var ltime = null;
+		var lcmoney = null;
+		var lgmoney = null;
+		if(null != shopUser.lastChargeLog){
+			ltime = shopUser.lastChargeLog.time;
+			lcmoney = shopUser.lastChargeLog.chargeMoney;
+			lgmoney = shopUser.lastChargeLog.giveMoney;
+		}
+		if(null != ltime && "" != ltime && null != lcmoney && "" != lcmoney && null != lgmoney && "" != lgmoney){
+			//上次充值时间
+			$("#lastChargeTime").text(ltime);
+			//充值金额
+			$("#lastChargeMoney").text(lcmoney);
+			//赠送金额
+			$("#lastGiveMoney").text(lgmoney);
+			$("#lastArea").show();
+		}
+		if(null != shopUser.image && "" != shopUser.image){
+			$("#headImage").attr("src",shopUser.image);
+		}
+		//手机号码
+		$("#userTel").text(shopUser.tel);
+		$("#successTel").text(shopUser.tel);
+		//会员名称
+		$("#userName").text(shopUser.name);
+		$("#successName").text(shopUser.name);
+		//剩余金额
+		$("#userMoney").text(shopUser.money);
+		$("#userIdHid").val(shopUser.userId);
+		$("#successUserId").text(shopUser.userId);
+	});
+	
+	function readyToFill(e) {
+		$(e).removeClass("member-card-pay-ready-keyboard-number-border");
+		$(e).addClass("member-card-pay-ready-keyboard-number-press-border");
+	}
+
+	function didFillRealCollect(e,number) {
+			
+		$(e).removeClass("member-card-pay-ready-keyboard-number-press-border");
+		$(e).addClass("member-card-pay-ready-keyboard-number-border");
+		keyboardInputMoneyNum(number);
+	}
+	
+	function keyboardInputMoneyNum(num){
+		//数字
+		var curCM = $("#chargeMoney").text();
+		if(num != 'del'){
+			if(num == '.'){
+				//判断当前是否为第一位
+				if(curCM.length == 0){
+					return;
+				}
+				//判断是否已经存在'.'
+				if(curCM.indexOf('.') != -1){
+					return;
+				}
+			} else {
+				if(curCM.indexOf('.') != -1){
+					//判断小数点后两位
+					if(curCM.toString().split(".")[1].length >= 2){
+						return;
+					}
+				} else {
+					if(curCM.length >= 6){
+						return;
+					}
+				}
+			}
+			$("#chargeMoney").text(curCM + num);
+		} else {
+			if(curCM.length == 0){
+				return;
+			}
+			curCM = curCM.substring(0,curCM.length-1);
+			$("#chargeMoney").text(curCM);
+		}
+		//重算赠送金额
+		calGiveMoney();
+		//重算实际充值
+		calRealMoney();
+	}
+	
+	function calGiveMoney(){
+		var giveFlag = $("#giveFlag").hasClass("list-checked-yes");
+		if(!giveFlag){
+			return;
+		}
+		var curCM = parseFloat($("#chargeMoney").text());
+		//充值字符串
+		var chargeSetValue = '';
+		var txFlag = "0";
+		if(null != chargeSetValue && "" != chargeSetValue){
+			var csArray = chargeSetValue.split(";");
+			for (var i = 0; i < csArray.length; i++) {
+				var ch = csArray[i].split(",")[0];
+				var gv = csArray[i].split(",")[1];
+				if(curCM >= parseFloat(ch)){
+					$("#giveMoneyText").text(gv);
+					txFlag = "1";
+				}
+			}
+		}
+		if(txFlag == "0"){
+			$("#giveMoneyText").text("0.00");
+		}
+	}
+	
+	function calRealMoney(){
+		var curCM = $("#chargeMoney").text();
+		var curGV = $("#giveMoneyText").text();
+		if(null == curCM || "" == curCM){
+			curCM = "0";
+		}
+		if(null == curGV || "" == curGV){
+			curGV = "0";
+		}
+		var real = parseFloat(curCM) + parseFloat(curGV);
+		if(null == real || "" == real || 0 == real){
+			$("#realChargeText").text("0");
+		} else {
+			$("#realChargeText").text(real);
+		}
+	}
+	
+	function changeGiveStatus(){
+		var giveFlag = $("#giveFlag").hasClass("list-checked-yes");
+		if(giveFlag){
+			$("#giveFlag").addClass("list-checked-no");
+			$("#giveFlag").removeClass("list-checked-yes");
+			
+			$("#giveMoneyText").text("0.00");
+			calRealMoney();
+		} else {
+			$("#giveFlag").addClass("list-checked-yes");
+			$("#giveFlag").removeClass("list-checked-no");
+			//重算赠送金额
+			calGiveMoney();
+			//重算实际充值
+			calRealMoney();
+		}
+	}
+	
+	function setMuCode(){
+		$("#codeSetPage").addClass("active");
+		//获取焦点
+		$("#codeSetArea").focus();
+	}
+	
+	function goBack(){
+		hideDialog();
+		if($("#codeSetPage").hasClass('active')){
+			$("#codeSetPage").removeClass("active");
+		} else if($("#pay-type-list-area").css("display") == 'block'){
+        	hidePayTypeList();
+        } else {
+			window.jsObj.closeWebBrowser(); 
+		}
+	}
+	
+	function clearCode(){
+		$("#codeSetArea").val("");
+	}
+	
+	function saleCode(){
+		var cd = $("#codeSetArea").val();
+		$("#mutyCodeHid").val(cd);
+		if(null == cd || "" == cd){
+			$("#codeTextA").html("推荐码");
+		} else {
+			$("#codeTextA").html(cd);
+		}
+		
+		$("#codeSetPage").removeClass("active");
+	}
+	
+	function showPayTypeList(){
+		var h = $(window).height();
+		var th = $("#kbord-height-set").outerHeight(true);
+		$("#pay-type-list-area").css("height",(th/h)*100+"%");
+		var pah = $("#pay-type-list-area").height();
+		var tph = $(".paytype-position-area-top").height();
+		var rrrh = pah - tph;
+		$(".paytype-position-area").height(rrrh);
+		$(document).scrollTop(0);
+		$("html").css({
+		"overflow":"hidden"});
+		$(".all-page-overlay").addClass("all-page-overlay-show");
+		$("#pay-type-list-area").show();
+	}
+	
+	function hidePayTypeList(){
+		$(document).scrollTop(0);
+		$("html").css({
+		"overflow":"auto"});
+		document.getElementById('paytype-position-area').scrollTop = 0;
+		$(".all-page-overlay").removeClass("all-page-overlay-show");
+		$("#pay-type-list-area").hide();
+	}
+	
+	function confirmPayMoney(){
+		var curCM = $("#chargeMoney").text();
+		if(null == curCM || "" == curCM){
+			WA.showMessage("请输入正确的金额");
+			return;
+		}
+		if(parseInt(curCM) < 0){
+			WA.showMessage("请输入正确的金额");
+			return;
+		}
+		showPayTypeList();
+	}
+	
+	function hideDialog(){
+		$("#message-dialog").removeClass("msg-dl-show");
+		$("#message-dialog-lay").removeClass("msg-dl-overlay-show");
+	}
+	
+	function payByWxpayQr(){
+		window.jsObj.getCommonQRAction("106","扫码支付",false);
+	}
+	
+	var ckwxpayFlag = "0";	
+	var overTimeDealFlag = "0";
+	function commonQrCallBack(qrtype,strcode){
+		if(ckwxpayFlag == "1"){
+			return;
+		}
+		showOrHideWaitAnimation('show',"正在支付...,");
+		ckwxpayFlag = "1";
+		var userId = $("#userIdHid").val();
+		var curCM = parseFloat($("#chargeMoney").text());
+		var giveFlag = $("#giveFlag").hasClass("list-checked-yes");
+		var chargeGiveFlag = "0";
+		if(!giveFlag){
+			chargeGiveFlag = "1";
+		}
+		var giveMoney = $("#giveMoneyText").text();
+		var paytype = $("#payTypeHid").val();
+		var traceNo = $("#traceNo").val();
+		var code = $("#mutyCodeHid").val();
+		WaAjax({
+			type : 'POST',
+			async : true,
+			url : '/web/ht/unionCharge/chargeConfirmOrder.json',
+			data:{
+				"userId" : userId,
+				"amount" : curCM,
+				"chargeGiveFlag" : chargeGiveFlag,
+				"traceNo" : traceNo,
+				"code" : code,
+				"giveMoney" : giveMoney,
+				"qrCodeStr" : strcode
+			},
+			success : function(data) {
+				if (data.code == '0') {		
+					showOrHideWaitAnimation('show',"正在查询支付结果,请稍后...");
+					checkPaySuccess(data.data.orderNo, 0);
+				} else {
+					showOrHideWaitAnimation('hide',"");
+					if(null != data.msg && "" != data.msg){
+						WA.showMessage(data.msg);
+					} else {
+						WA.showMessage("扫码下单请求失败了~");
+					}				
+				}
+				ckwxpayFlag = "0";
+			},
+			error: function () {
+				ckwxpayFlag = "0";
+				showOrHideWaitAnimation('hide',"");
+            	WA.showMessage("请检查网络是否畅通~");
+           }
+		});
+	}
+	
+	//超时处理
+	function outtimeDeal(orderNo,i){
+		if (i > 5) {
+			showOrHideWaitAnimation('hide',"");
+			WA.showMessage("获取充值记录超时，请稍后手动查询该笔充值是否已到账");
+			ckwxpayFlag = "0";
+			return;
+		}
+		i++;
+		WaAjax({
+			type : 'POST',
+			async : true,
+			url : '/web/ht/unionCharge/getShopLog.json',
+			data:{
+				"orderNo" : orderNo
+			},
+			success : function(data) {
+				if (data.code == '0') {	
+					if (data.status != null && data.status == "1") {
+						showOrHideWaitAnimation('hide',"");
+						// 充值成功div
+						var shopLog = data.shopLog; 
+						$("#sucsChargeMy").text(shopLog.changeMoney);
+						$("#successGive").text(shopLog.giveMoney);
+						$("#successLeft").text(shopLog.leftMoney);
+						$("#successGivePoint").text(shopLog.changePoint);
+						$("#successLeftPoint").text(shopLog.leftPoint);
+						$("#chargeSuccessArea").addClass("active");
+					} else if(data.status != null && data.status == "2"){
+						setTimeout(function() {
+							outtimeDeal(orderNo,i);
+	        			}, 2500);
+					}
+				} else {
+					showOrHideWaitAnimation('hide',"");
+					if(null != data.msg && "" != data.msg){
+						WA.showMessage(data.msg);
+					} else {
+						WA.showMessage("获取充值记录超时，请稍后手动查询该笔充值是否已到账");
+					}				
+				}
+				ckwxpayFlag = "0";
+			},
+			error: function () {
+				ckwxpayFlag = "0";
+				showOrHideWaitAnimation('hide',"");
+            	WA.showMessage("请检查网络是否畅通~");
+           }
+		});
+	}
+	
+	//轮询订单状态
+	function checkPaySuccess(orderNo, i) {
+		if (i > 12) {
+			outtimeDeal(orderNo,0);
+			return;
+		}
+		i++;
+		$.ajax({		 	
+            url: '/web/ht/unionCharge/getPayStatus.json',
+            data: {
+            	'orderNo':orderNo
+            },
+            type: 'get',
+            success: function (data) {
+            	if(data.code == '0'){
+            		if (data.status != null && data.status == "1") {
+   	            		if(typeof(jsObj) != 'undefined'){
+							var typeof_app = typeof(window.jsObj.showNativeToast);								
+							if(typeof_app === 'function'){
+								window.jsObj.showNativeToast("支付成功");
+							} else {
+								Wait.showAnimation({
+									message : "支付成功,",
+									imgbg : '#1cd391',
+								});
+							}				
+						} else {
+							Wait.showAnimation({
+								message : "支付成功,",
+								imgbg : '#1cd391',
+							});
+						}
+   	            		showOrHideWaitAnimation('hide',"");
+   	            		showOrHideWaitAnimation('show',"获取充值记录中,请稍后...");
+						outtimeDeal(orderNo,0);
+					}else{
+						setTimeout(function() {
+	            			checkPaySuccess(orderNo, i);
+	        			}, 2500);
+					}
+            	}else{
+            		setTimeout(function() {
+            			checkPaySuccess(orderNo, i);
+        			}, 2500);
+				}            	
+            },error: function (e) {
+            	setTimeout(function() {
+        			checkPaySuccess(orderNo, i);
+    			}, 2500);
+            }
+        });		
+	}
+	
+	function payBy(id,name){
+		if(null == id || "" == id){
+			return;
+		}
+		$("#payTypeHid").val(id);
+		var payMoney = parseFloat($("#chargeMoney").text());
+		if(id == 6){
+			hidePayTypeList();
+			payByWxpayQr();
+			return;
+		}
+		var msg = "<div style='text-align: left;'>";
+    	msg += "<div style='height:1.2rem;line-height:1rem'>充值方式<span style='color:#ff801a;float:right;'>"+ name + "</span></div>";
+    	msg += "<div style='height:1.2rem;line-height:1rem'>会员姓名<span style='color:#ff801a;float:right;'>"+ $("#userName").text() + "</span></div>";
+    	msg += "<div style='height:1.2rem;line-height:1rem'>收款金额<span style='color:#ff801a;float:right;'>￥<span style='font-size:.7rem'>"+ payMoney + "</span></span></div>";
+    	msg += "<div style='height:1.2rem;line-height:1rem'>实充金额<span style='color:#ff801a;float:right;'>￥<span style='font-size:.7rem'>"+ parseFloat($("#realChargeText").text()) + "</span></span></div>";
+    	msg += "</div>";
+    	WA.showConfirm({
+		title : "充值确认",
+		message : msg,
+		onlybtn : false,
+		okName : "确认",
+		okFunc : function() {
+				hideDialog();
+				window.jsObj.showNativeDialog(true);
+				payMoney = payMoney*100;
+				if('0' == '1'){
+					if(id == '1'){
+					chargeMoney();
+					} else if("2" == id){
+					// 微信
+						if(isAppBeforeVersion("3.9.8")){
+							window.jsObj.openUnionPay('2',payMoney);
+						} else {
+							window.jsObj.openUnionPay('2',payMoney,"");
+						}	
+						hideDialog();
+						hidePayTypeList();
+						return;
+					// 支付宝
+					} else if("3" == id){
+						if(isAppBeforeVersion("3.9.8")){
+							window.jsObj.openUnionPay('3',payMoney);
+						} else {
+							window.jsObj.openUnionPay('3',payMoney,"");
+						}
+						hideDialog();
+						hidePayTypeList();
+						return;
+					// 银行卡
+					} else if("4" == id){
+						if(isAppBeforeVersion("3.9.8")){
+							window.jsObj.openUnionPay('1',payMoney);
+						} else {
+							window.jsObj.openUnionPay('1',payMoney,"");
+						}
+						hideDialog();
+						hidePayTypeList();
+						return;
+					}
+				} else {
+					chargeMoney();
+				}	
+			}
+		});
+	}
+	
+	//银联支付回调
+	function unionPayCallback(re){
+		if(re.resultCode == 0){
+			var td = JSON.parse(re.transData);
+			if(td.resCode == 00){
+				$("#traceNo").val(td.traceNo);
+				chargeMoney();
+			} else {
+				window.jsObj.showNativeDialog(false);
+				WA.showMessage(td.resDesc);
+			}
+		} else {
+			window.jsObj.showNativeDialog(false);
+			WA.showMessage(re);
+		}
+	}
+	
+	var chargeMoneyFlag = "0";
+	function chargeMoney(){
+		if(chargeMoneyFlag == "1"){
+			return;
+		}
+		chargeMoneyFlag = "1";
+		var userId = $("#userIdHid").val();
+		var curCM = parseFloat($("#chargeMoney").text());
+		var giveFlag = $("#giveFlag").hasClass("list-checked-yes");
+		var chargeGiveFlag = "0";
+		if(!giveFlag){
+			chargeGiveFlag = "1";
+		}
+		var giveMoney = $("#giveMoneyText").text();
+		var paytype = $("#payTypeHid").val();
+		var traceNo = $("#traceNo").val();
+		if(paytype != '1'){
+			if('0' == '1'){
+				if(null == traceNo || "" == traceNo){
+					return;
+				}
+			}
+		}
+		var code = $("#mutyCodeHid").val();
+		WaAjax({
+			type : 'POST',
+			async : true,
+			url : '/web/ht/unionCharge/charge.json',
+			data:{
+			"userId" : userId,
+			"amount" : curCM,
+			"chargeGiveFlag" : chargeGiveFlag,
+			"paytype" : paytype,
+			"traceNo" : traceNo,
+			"code" : code,
+			"giveMoney" : giveMoney
+			},
+			success : function(data) {
+				window.jsObj.showNativeDialog(false);
+				if (data.code == '0') {
+					// 充值成功div
+					var shopLog = JSON.parse(data.shopLog); 
+					$("#sucsChargeMy").text(shopLog.changeMoney);
+					$("#successGive").text(shopLog.giveMoney);
+					$("#successLeft").text(shopLog.leftMoney);
+					$("#successGivePoint").text(shopLog.changePoint);
+					$("#successLeftPoint").text(shopLog.leftPoint);
+					$("#chargeSuccessArea").addClass("active");
+				} else{
+					if(data.msg != null && data.msg != ''){
+						WA.showMessage(data.msg);
+					} else {
+						WA.showMessage("充值失败了。");
+					}
+				}
+			}
+		});
+	}
+	
+	function changeGiveAmount(){
+		WA.showConfirm({
+            title : "赠送金额", 
+            inputVal : 'true',
+            type : 'text',
+            maxlength : '6',
+            placeholder : "请输入赠送金额",
+            onlybtn : false,
+            inputLimit: "onlyNumberButZero",
+            okFunc : function(events) {             	
+           	hideDialog();//隐藏备注弹窗
+           	var result = events.data.val();
+           	$("#giveFlag").addClass("list-checked-yes");
+    		$("#giveFlag").removeClass("list-checked-no");
+    		$("#giveMoneyText").text(result);
+    		calRealMoney();
+            },
+            cancelFunc:function(){	 
+           	 WA.hideMessage();
+            }
+        });
+	}
+	
+	function showOrHideWaitAnimation($type,$message){		
+		if($type == 'show'){
+			Wait.showAnimation({				
+				message : $message,
+				imgbg : '#1cd391',					
+			});
+		}else{
+			Wait.hideAnimation();			
+		}
+	}
+	
+
+</script>
+
+</head>
+<body style="background-color: #f7f7f7">
+	<input type="hidden" id="mutyCodeHid" value="" />	 
+	<input type="hidden" id="payTypeHid" value="" /> 
+	<input type="hidden" id="userIdHid" value="" /> 
+	<input type="hidden" id="traceNo" value="" /> 
+	<div class="all-page-overlay" onclick="hidePayTypeList()"></div>
+	
+	<div id="lastArea" style="width: 10.4rem;height: 1.2rem;margin: auto;background-color: #fff;margin-top: .2rem;color: #999;display: none;">
+		<div style="text-align: center;padding-top: .08rem;">上次充值时间：<span id="lastChargeTime"></span></div>
+		<div style="text-align: center;">上次充值金额：<span id="lastChargeMoney" style="color: #ff801a"></span>元&nbsp&nbsp&nbsp&nbsp&nbsp赠送金额：<span id="lastGiveMoney" style="color: #ff801a"></span>元</div>
+	</div>  		
+	
+	<div style="width: 10.4rem;height: 2.7rem;margin: auto;background-color: #fff;margin-top: .3rem;">
+		<div style="width:1.9rem;height: 1.9rem;float: left;margin-left: .5rem;margin-top: .4rem;">
+			<img id="headImage" width="100%"src="/web/images/headDef.png"/>	
+		</div>
+		<div style="width: 7rem;float: left;line-height: .7rem;margin-top: .3rem;margin-left: .3rem;">
+			<div style="color: #999">
+				手机号码：<span id="userTel" style="color: #52587a"></span>
+			</div>
+			<div style="color: #999">
+				会员名称：<span id="userName" style="color: #52587a"></span>
+			</div>
+			<div style="color: #999">
+				剩余金额：<span id="userMoney" style="color: #52587a"></span>
+			</div>
+		</div>
+		<div style="position: relative;height: 100%">
+			
+		</div>
+	</div>  
+	
+	<!-- 现金等方式结账键盘 -->
+	<div id="payKeybordArea">
+		<div style="position: fixed;bottom: 0;width: 100%" id="kbord-height-set">
+			<!-- 实际充值区域 -->
+			<div style="height: 3.1rem;width:100%;border-top: 1px solid #e1e1e1;background-color: #f7f7f7;">
+				<div style="width: 10.4rem;height: 2.75rem;background-color: #fff;border: 1px solid #ccc;margin: auto;margin-top: .17rem">
+					<div style="width: 2rem;float: right;color: #999;font-size: .3rem;margin-right: .55rem;text-align: right;margin-top: .4rem;height: .5rem">充值金额</div>
+					<div style="clear: both;"></div>
+					<div style="width: 9.85rem;text-align: right;color: #1cd391;font-size: 1.25rem;font-weight: bold;">
+						<span id="chargeMoney"></span>
+					</div>
+				</div>
+			</div>
+			<div style="height: 1.2rem;width:100%;border-top: 1px solid #e1e1e1;background-color: #f7f7f7">
+				<div style="position: relative;left: 0;width: .5rem;">
+					<div id="giveFlag" class="list-checked-yes" style="width: .5rem;height: .5rem;position: absolute;left: .5rem;top: .35rem" onclick="changeGiveStatus()">
+					</div>
+				</div>
+				<div style="width: 100%;font-size: .3rem;height: 0.4rem;margin-top: .1rem;">
+					<span style="color: #1cd391;float: left;margin-left: 1.2rem;height: 0.4rem;">赠送金额</span>
+					<span style="color: #999;float: right;margin-right: .3rem;height: 0.4rem;">实际充值</span>
+				</div>
+				
+					<div style="position: relative;left: 2.5rem;width: .5rem;top:-.27rem">
+						<div id="giveAnyAmountBtn" style="width: 1.5rem;height: .8rem;position: absolute;left: .5rem;background-color: #1cd391;text-align: center;line-height: .8rem;color: #fff;border-radius:.2rem" onclick="changeGiveAmount()">
+							调整
+						</div>
+					</div>
+				
+				<div style="width: 100%;font-size: .45rem;height: 0.5rem;font-weight: bold;">
+					<span style="color: #1cd391;float: left;margin-left: 1.2rem;height: 0.5rem;" id="giveMoneyText">
+						0.00
+					</span>
+					<span style="color: #666;float: right;margin-right: .3rem;height: 0.5rem;" id="realChargeText">
+					</span>
+				</div>
+			</div>
+					<div style="clear: both;"></div>
+			<div style="width:100%;height:7rem;bottom:0;border-top: 1px solid #bebebe;background-color:#ffffff;overflow:hidden">
+				<div ontouchstart="readyToFill(this)" ontouchend="didFillRealCollect(this,'1')" class="member-card-pay-ready-keyboard-one-card member-card-pay-ready-keyboard-number-border1 member-card-pay-ready-keyboard-number-font-card">1</div>
+				<div ontouchstart="readyToFill(this)" ontouchend="didFillRealCollect(this,'2')" class="member-card-pay-ready-keyboard-one-card member-card-pay-ready-keyboard-number-border1 member-card-pay-ready-keyboard-number-font-card">2</div>
+				<div ontouchstart="readyToFill(this)" ontouchend="didFillRealCollect(this,'3')" class="member-card-pay-ready-keyboard-one-card member-card-pay-ready-keyboard-number-border1 member-card-pay-ready-keyboard-number-font-card">3</div>
+				<div style="clear: both;"></div>
+				<div ontouchstart="readyToFill(this)" ontouchend="didFillRealCollect(this,'4')" class="member-card-pay-ready-keyboard-one-card member-card-pay-ready-keyboard-number-border1 member-card-pay-ready-keyboard-number-font-card">4</div>
+				<div ontouchstart="readyToFill(this)" ontouchend="didFillRealCollect(this,'5')" class="member-card-pay-ready-keyboard-one-card member-card-pay-ready-keyboard-number-border1 member-card-pay-ready-keyboard-number-font-card">5</div>
+				<div ontouchstart="readyToFill(this)" ontouchend="didFillRealCollect(this,'6')" class="member-card-pay-ready-keyboard-one-card member-card-pay-ready-keyboard-number-border1 member-card-pay-ready-keyboard-number-font-card">6</div>				
+				<div style="clear: both;"></div>
+				<div ontouchstart="readyToFill(this)" ontouchend="didFillRealCollect(this,'7')" class="member-card-pay-ready-keyboard-one-card member-card-pay-ready-keyboard-number-border1 member-card-pay-ready-keyboard-number-font-card">7</div>
+				<div ontouchstart="readyToFill(this)" ontouchend="didFillRealCollect(this,'8')" class="member-card-pay-ready-keyboard-one-card member-card-pay-ready-keyboard-number-border1 member-card-pay-ready-keyboard-number-font-card">8</div>
+				<div ontouchstart="readyToFill(this)" ontouchend="didFillRealCollect(this,'9')" class="member-card-pay-ready-keyboard-one-card member-card-pay-ready-keyboard-number-border1 member-card-pay-ready-keyboard-number-font-card">9</div>
+				<div style="clear: both;"></div>
+				<div ontouchstart="readyToFill(this)" ontouchend="didFillRealCollect(this,'.')" class="member-card-pay-ready-keyboard-one-card member-card-pay-ready-keyboard-number-border1 member-card-pay-ready-keyboard-number-font-card">.</div>
+				<div ontouchstart="readyToFill(this)" ontouchend="didFillRealCollect(this,'0')" class="member-card-pay-ready-keyboard-one0-card member-card-pay-ready-keyboard-number-border1 member-card-pay-ready-keyboard-number-font-card">0</div>
+				<div style="border-left: 1px solid #bebebe;background-color: #1cd391 !important;width: 2.65rem;height: 3.5rem;position: absolute;right: 0;bottom: 0;line-height: 3.5rem;color: #fff;font-size: .6rem;text-align: center;" onclick="confirmPayMoney()">确认</div>		
+				<div ontouchstart="readyToFill(this)" style="border-left: 1px solid #bebebe;width: 2.65rem;height: 3.5rem;position: absolute;right: 0;margin-top:0;bottom: 3.5rem;line-height: 3.5rem;float: right;color: #fff;background-color: #fff;" ontouchend="didFillRealCollect(this,'del')">
+					<div style="width: .7rem;height: .47rem;margin: auto;">
+						<img width="100%"src="/web/images/delete-number.png"/>	
+					</div>
+				</div>	
+			</div>
+			</div>
+		
+	</div>
+	
+	<!-- 联盟码-->
+	<div class="common-config-page ht-holl-content-view-common-body-bgcolor-style" id="codeSetPage">
+		<ul class="global-set-list-without-right-arrow ht-commom-white-background">
+			<li class="ht-member-detail-border-bottom-style">
+				<div class="ht-staff-add-text">推荐码</div> <input id="codeSetArea" style="text-align: left;" type="tel"
+				class="ht-staff-add-input ht-sale-value-card-input ht-member-detail-member-discount-set-input-style"
+				oninput="if(value.length>6)value=value.slice(0,6)"
+				onkeyup="this.value=this.value.replace(/\D/g,'')"
+				placeholder="请输入推荐码" id="sdiscount" value="" />
+				<div style="width: .4rem;height: .4rem;float: right;margin-right: .4rem;" onclick="clearCode()">
+					<img width="100%"src="/web/images/ht/del.png"/>	
+				</div>
+			</li>
+		</ul>
+		<input type="button"
+			class="btn-operate btn-save ht-staff-add-edit-btn ht-member-detail-member-discount-set-btn-style"
+			value="保存" onclick="saleCode()" />
+	</div>
+	
+	<!-- 支付方式列表 -->
+	<div id="pay-type-list-area" style="width: 100%;position: fixed;bottom: 0;z-index: 1001;background-color: #fff;display: none;">
+		<div style="width: 100%;position: fixed;">
+			<div style="width: 6rem;margin: auto;margin-top: .4rem;text-align: center;color: #52587a;font-size: .44rem;">请选择收银方式</div>
+			<div style="width: 5rem;margin: auto;height:.4rem;" onclick="hidePayTypeList()">
+				<div style="width: .4rem;height: .22rem;margin: auto;">
+					<img width="100%" height="100%" src="/web/images/xiajiantou.png"/>
+				</div>
+			</div>
+		</div>
+		<div class="paytype-position-area-top" style="height: 2rem;"></div>
+		<div id="paytype-position-area" class="paytype-position-area" style="width: 93%;margin: auto;margin-top: .3rem;overflow :auto;">
+				
+				
+				 	<div class="collectMoney-more-pays" style="height: 3rem;width: 4.95rem;float: left;margin-left: 0;border-right: 1px solid #e5e5e5;"  onclick="payBy('1','现金')">
+				
+				
+					<div style="width: 1.1rem;height: 1.1rem;margin: auto;margin-top: .7rem">
+						<img width="100%" height="100%" src="https://wabutler.oss-cn-beijing.aliyuncs.com//product/pay_type_icon/card/1.png"/>
+					</div>
+					<div class="collectMoney-more-pays-name-area" style="width: 3rem;margin: auto;color: #52587a;text-align: center;">现金</div>
+				</div>	
+				
+				
+				
+				 	<div class="collectMoney-more-pays" style="height: 3rem;width: 4.95rem;float: left;margin-left: 0;" onclick="payBy('2','微信(记账)')">
+				
+					<div style="width: 1.1rem;height: 1.1rem;margin: auto;margin-top: .7rem">
+						<img width="100%" height="100%" src="https://wabutler.oss-cn-beijing.aliyuncs.com//product/pay_type_icon/card/2.png"/>
+					</div>
+					<div class="collectMoney-more-pays-name-area" style="width: 3rem;margin: auto;color: #52587a;text-align: center;">微信(记账)</div>
+				</div>	
+				
+				
+				 	<div class="collectMoney-more-pays" style="height: 3rem;width: 4.95rem;float: left;margin-left: 0;border-right: 1px solid #e5e5e5;"  onclick="payBy('3','支付宝(记账)')">
+				
+				
+					<div style="width: 1.1rem;height: 1.1rem;margin: auto;margin-top: .7rem">
+						<img width="100%" height="100%" src="https://wabutler.oss-cn-beijing.aliyuncs.com//product/pay_type_icon/card/3.png"/>
+					</div>
+					<div class="collectMoney-more-pays-name-area" style="width: 3rem;margin: auto;color: #52587a;text-align: center;">支付宝(记账)</div>
+				</div>	
+				
+				
+				
+				 	<div class="collectMoney-more-pays" style="height: 3rem;width: 4.95rem;float: left;margin-left: 0;" onclick="payBy('4','银行卡')">
+				
+					<div style="width: 1.1rem;height: 1.1rem;margin: auto;margin-top: .7rem">
+						<img width="100%" height="100%" src="https://wabutler.oss-cn-beijing.aliyuncs.com//product/pay_type_icon/card/4.png"/>
+					</div>
+					<div class="collectMoney-more-pays-name-area" style="width: 3rem;margin: auto;color: #52587a;text-align: center;">银行卡</div>
+				</div>	
+				
+				
+				 	<div class="collectMoney-more-pays" style="height: 3rem;width: 4.95rem;float: left;margin-left: 0;border-right: 1px solid #e5e5e5;"  onclick="payBy('5','其他')">
+				
+				
+					<div style="width: 1.1rem;height: 1.1rem;margin: auto;margin-top: .7rem">
+						<img width="100%" height="100%" src="https://wabutler.oss-cn-beijing.aliyuncs.com//product/pay_type_icon/card/5.png"/>
+					</div>
+					<div class="collectMoney-more-pays-name-area" style="width: 3rem;margin: auto;color: #52587a;text-align: center;">其他</div>
+				</div>	
+				
+				
+				
+				 	<div class="collectMoney-more-pays" style="height: 3rem;width: 4.95rem;float: left;margin-left: 0;" onclick="payBy('6','扫码')">
+				
+					<div style="width: 1.1rem;height: 1.1rem;margin: auto;margin-top: .7rem">
+						<img width="100%" height="100%" src="https://wabutler.oss-cn-beijing.aliyuncs.com//product/pay_type_icon/card/6.png"/>
+					</div>
+					<div class="collectMoney-more-pays-name-area" style="width: 3rem;margin: auto;color: #52587a;text-align: center;">扫码</div>
+				</div>	
+			
+		</div>
+	
+	</div> 	
+	
+	<!-- 充值成功  -->
+	<div class="common-config-page ht-holl-content-view-common-body-bgcolor-style" id="chargeSuccessArea" style="background-color: #fff">
+		<div style="height: 3.2rem;;width: 10rem;margin: auto;border-bottom: 1px solid #e1e1e1;font-size: 1.2rem;color: #1cd391;line-height: 3.2rem;text-align: center;font-weight: bold;">
+			+<span id="sucsChargeMy"></span>
+		</div>
+		<div style="width: 1.9rem;height: 1rem;margin: auto;margin-top: -.25rem;font-size: .32rem;color: #999;background-color: #fff;text-align: center;">账户详情</div>
+		<div style="color: #999;margin-left: 1rem;">
+			<div style="width: 1.62rem;height: 1rem;float: left;">
+				<span style="float: left;">姓</span>
+				<span style="float: right;">名：</span>
+			</div>
+			<span id="successName" style="float: left;color: #52587a;margin-left: 1.5rem;"></span>
+			<div style="clear: both;"></div>
+		</div>
+		<div style="color: #999;margin-left: 1rem;">
+			<div style="width: 1.7rem;height: 1rem;float: left;">
+				<span style="float: left;">会员号：</span>
+			</div>
+			<span id="successUserId" style="float: left;color: #52587a;margin-left: 1.5rem;"></span>
+			<div style="clear: both;"></div>
+		</div>
+		<div style="color: #999;margin-left: 1rem;">
+			<div style="width: 1.7rem;height: 1rem;float: left;">
+				<span style="float: left;">手机号：</span>
+			</div>
+			<span id="successTel" style="float: left;color: #52587a;margin-left: 1.5rem;"></span>
+			<div style="clear: both;"></div>
+		</div>
+		<div style="width: 10rem;height: 1.5rem;border-bottom: 1px solid #e1e1e1;border-top: 1px solid #e1e1e1;margin: auto;margin-top: .5rem;line-height: 1.5rem;">
+			<span style="color: #52587a;float: left;margin-left: .62rem;">赠送金额:</span>
+			<span style="color: #52587a;float: right;margin-right: .62rem;" id="successGive"></span>
+		</div>
+		<div style="width: 10rem;height: 1.5rem;border-bottom: 1px solid #e1e1e1;margin: auto;line-height: 1.5rem;">
+			<span style="color: #52587a;float: left;margin-left: .62rem;">卡内余额:</span>
+			<span style="color: #52587a;float: right;margin-right: .62rem;" id="successLeft"></span>
+		</div>
+		<div style="width: 10rem;height: 1.5rem;border-bottom: 1px solid #e1e1e1;margin: auto;line-height: 1.5rem;">
+			<span style="color: #52587a;float: left;margin-left: .62rem;">赠送积分:</span>
+			<span style="color: #52587a;float: right;margin-right: .62rem;" id="successGivePoint"></span>
+		</div>
+		<div style="width: 10rem;height: 1.5rem;border-bottom: 1px solid #e1e1e1;margin: auto;line-height: 1.5rem;">
+			<span style="color: #52587a;float: left;margin-left: .62rem;">剩余积分:</span>
+			<span style="color: #52587a;float: right;margin-right: .62rem;" id="successLeftPoint"></span>
+		</div>
+		<div style="width: 100%;height: 1.5rem;background-color: #1cd391;text-align: center;line-height: 1.5rem;color: #fff;font-size: .6rem;position: absolute;bottom: 0" onclick="goBack()">完成</div>
+	</div>
+	
+	
+<style>
+/****************************************************************
+	loader样式
+	by wuab
+****************************************************************/
+.ball-scale-ripple-multiple-box{
+  position: relative;
+  //width: 4rem;
+  height: 4rem;
+  margin-bottom:.2rem;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+      -ms-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%); 
+  top: 50%;
+  left: 50%;	
+}
+/*!
+ * Load Awesome v1.1.0 (http://github.danielcardoso.net/load-awesome/)
+ * Copyright 2015 Daniel Cardoso <@DanielCardoso>
+ * Licensed under MIT
+ */
+.la-square-jelly-box,
+.la-square-jelly-box > div {
+    position: relative;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    width: 1.7rem;
+    height: 1.7rem;
+    margin:auto;
+    margin-bottom:.2rem;
+}
+
+.la-square-jelly-box {
+    display: block;
+    font-size: 0;
+    color: #f4696b;
+}
+
+.la-square-jelly-box.la-dark {
+    color: #333;
+}
+
+.la-square-jelly-box > div {
+    display: inline-block;
+    float: none;
+    background-color: currentColor;
+    border: 0 solid currentColor;
+}
+
+.la-square-jelly-box {
+	width: 1.7rem;
+    height: 1.7rem;
+}
+
+.la-square-jelly-box > div:nth-child(1),
+.la-square-jelly-box > div:nth-child(2) {
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+.la-square-jelly-box > div:nth-child(1) {
+    top: -25%;
+    z-index: 1;
+    height: 100%;
+    border-radius: 10%;
+    -webkit-animation: square-jelly-box-animate .6s -.1s linear infinite;
+       -moz-animation: square-jelly-box-animate .6s -.1s linear infinite;
+         -o-animation: square-jelly-box-animate .6s -.1s linear infinite;
+            animation: square-jelly-box-animate .6s -.1s linear infinite;
+}
+
+.la-square-jelly-box > div:nth-child(2) {
+    bottom: -22%;
+    height: 10%;
+    background: #000;
+    border-radius: 50%;
+    opacity: .4;
+    -webkit-animation: square-jelly-box-shadow .6s -.1s linear infinite;
+       -moz-animation: square-jelly-box-shadow .6s -.1s linear infinite;
+         -o-animation: square-jelly-box-shadow .6s -.1s linear infinite;
+            animation: square-jelly-box-shadow .6s -.1s linear infinite;
+}
+
+.la-square-jelly-box.la-sm {
+    width: 16px;
+    height: 16px;
+}
+
+.la-square-jelly-box.la-2x {
+    width: 64px;
+    height: 64px;
+}
+
+.la-square-jelly-box.la-3x {
+    width: 96px;
+    height: 96px;
+}
+
+/****************************************************************
+ * Animations
+ ****************************************************************/
+@-webkit-keyframes square-jelly-box-animate {
+    17% {
+        border-bottom-right-radius: 10%;
+    }
+    25% {
+        -webkit-transform: translateY(25%) rotate(22.5deg);
+                transform: translateY(25%) rotate(22.5deg);
+    }
+    50% {
+        border-bottom-right-radius: 100%;
+        -webkit-transform: translateY(50%) scale(1, .9) rotate(45deg);
+                transform: translateY(50%) scale(1, .9) rotate(45deg);
+    }
+    75% {
+        -webkit-transform: translateY(25%) rotate(67.5deg);
+                transform: translateY(25%) rotate(67.5deg);
+    }
+    100% {
+        -webkit-transform: translateY(0) rotate(90deg);
+                transform: translateY(0) rotate(90deg);
+    }
+}
+@-moz-keyframes square-jelly-box-animate {
+    17% {
+        border-bottom-right-radius: 10%;
+    }
+    25% {
+        -moz-transform: translateY(25%) rotate(22.5deg);
+             transform: translateY(25%) rotate(22.5deg);
+    }
+    50% {
+        border-bottom-right-radius: 100%;
+        -moz-transform: translateY(50%) scale(1, .9) rotate(45deg);
+             transform: translateY(50%) scale(1, .9) rotate(45deg);
+    }
+    75% {
+        -moz-transform: translateY(25%) rotate(67.5deg);
+             transform: translateY(25%) rotate(67.5deg);
+    }
+    100% {
+        -moz-transform: translateY(0) rotate(90deg);
+             transform: translateY(0) rotate(90deg);
+    }
+}
+@-o-keyframes square-jelly-box-animate {
+    17% {
+        border-bottom-right-radius: 10%;
+    }
+    25% {
+        -o-transform: translateY(25%) rotate(22.5deg);
+           transform: translateY(25%) rotate(22.5deg);
+    }
+    50% {
+        border-bottom-right-radius: 100%;
+        -o-transform: translateY(50%) scale(1, .9) rotate(45deg);
+           transform: translateY(50%) scale(1, .9) rotate(45deg);
+    }
+    75% {
+        -o-transform: translateY(25%) rotate(67.5deg);
+           transform: translateY(25%) rotate(67.5deg);
+    }
+    100% {
+        -o-transform: translateY(0) rotate(90deg);
+           transform: translateY(0) rotate(90deg);
+    }
+}
+@keyframes square-jelly-box-animate {
+    17% {
+        border-bottom-right-radius: 10%;
+    }
+    25% {
+        -webkit-transform: translateY(25%) rotate(22.5deg);
+           -moz-transform: translateY(25%) rotate(22.5deg);
+             -o-transform: translateY(25%) rotate(22.5deg);
+                transform: translateY(25%) rotate(22.5deg);
+    }
+    50% {
+        border-bottom-right-radius: 100%;
+        -webkit-transform: translateY(50%) scale(1, .9) rotate(45deg);
+           -moz-transform: translateY(50%) scale(1, .9) rotate(45deg);
+             -o-transform: translateY(50%) scale(1, .9) rotate(45deg);
+                transform: translateY(50%) scale(1, .9) rotate(45deg);
+    }
+    75% {
+        -webkit-transform: translateY(25%) rotate(67.5deg);
+           -moz-transform: translateY(25%) rotate(67.5deg);
+             -o-transform: translateY(25%) rotate(67.5deg);
+                transform: translateY(25%) rotate(67.5deg);
+    }
+    100% {
+        -webkit-transform: translateY(0) rotate(90deg);
+           -moz-transform: translateY(0) rotate(90deg);
+             -o-transform: translateY(0) rotate(90deg);
+                transform: translateY(0) rotate(90deg);
+    }
+}
+
+@-webkit-keyframes square-jelly-box-shadow {
+    50% {
+        -webkit-transform: scale(1.25, 1);
+                transform: scale(1.25, 1);
+    }
+}
+
+@-moz-keyframes square-jelly-box-shadow {
+    50% {
+        -moz-transform: scale(1.25, 1);
+             transform: scale(1.25, 1);
+    }
+}
+
+@-o-keyframes square-jelly-box-shadow {
+    50% {
+        -o-transform: scale(1.25, 1);
+           transform: scale(1.25, 1);
+    }
+}
+
+@keyframes square-jelly-box-shadow {
+    50% {
+        -webkit-transform: scale(1.25, 1);
+           -moz-transform: scale(1.25, 1);
+             -o-transform: scale(1.25, 1);
+                transform: scale(1.25, 1);
+    }
+}
+.call_loading{
+	position:fixed; 
+	background-color:rgba(0,0,0,0.7);
+	height:100%;
+	width:100%;
+	top:0;
+	bottom:0;
+	z-index:9999;
+	visibility:hidden;
+	opacity:0;
+	will-change:opacity;
+	font-size:.8rem;
+	-webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.call_loading.active{
+	visibility:visible;
+	opacity:1;
+}
+.call_loading_text{
+	text-align:center;color:#fff;font-size: .5rem;
+}
+.call_cancel_text{
+	text-align:center;
+	color:#fff;
+	font-size: .4rem;
+	padding:0.1rem;
+	border: 1px solid #fff;
+	margin-top: 3.5rem;
+	display:none;
+	border-radius: 0.5rem;
+}
+</style> 
+
+<!-- 正在结账，请等待的动画 -->
+<div class="call_loading" id="call_loading" onclick="">
+	<div class="ball-scale-ripple-multiple-box">
+		<!-- la-square-jelly-box是CSS动态图画的div -->
+		<div class="la-square-jelly-box">
+			<div id="la-square-jelly-img" style=""></div>
+			<div id="la-square-jelly-img-bottom-shadow" ></div>
+		</div>
+		
+		<!-- la-square-jelly-loading-img是加载本地动态图画的div,两者只能显示其一 -->
+		<div id="la-square-jelly-loading-img" style="position: fixed;top: 20%;left: 37%;">
+			<img src="../images/loading.gif" alt="" style="height: 1rem;"/>
+		</div>
+		
+	    <div class="call_loading_text" id="call_loading_text">
+	    	正在结账<br/>请稍候…
+	    </div>
+	    
+	    <div class="call_cancel_text" id="call_cancel_text" onclick="cancelClick()">
+	    	取消
+	    </div>
+    </div>
+</div>
+    
+<script>
+var Wait = {};
+var cancelFunction = null;
+/**
+ * 展示等待动画
+ */
+Wait.showAnimation = function(obj) {	
+	// 提示消息
+	if (obj.message) {
+		var arr = obj.message.split(",");
+		var newMsg = arr[0]+"<br/>"+arr[1];
+		$("#call_loading_text").html(newMsg);        
+    }	
+	// 动态图的颜色
+	if (obj.imgbg) {
+		$("#la-square-jelly-img").css({"background":obj.imgbg});        
+    }	
+	// 是否隐藏动态图
+	if (obj.ishide) {
+		$("#la-square-jelly-loading-img").show();
+		$("#la-square-jelly-img").hide();        
+		$("#la-square-jelly-img-bottom-shadow").hide();  	
+    }else{
+    	$("#la-square-jelly-loading-img").hide();
+    	$("#la-square-jelly-img").show();        
+		$("#la-square-jelly-img-bottom-shadow").show();      	
+    }		
+    
+    if (obj.showCancel) {
+    	$("#call_cancel_text").text(obj.showCancel.text);
+    	$("#call_cancel_text").show();
+    	cancelFunction = obj.showCancel.func;
+    }
+	
+	$("#call_loading").addClass("active");
+};
+
+function cancelClick() {
+	cancelFunction();
+}
+
+/**
+ * 隐藏等待动画
+ */
+Wait.hideAnimation = function(obj) {
+	$("#call_loading").removeClass("active");
+	$("#call_cancel_text").hide();
+};
+</script>	
+	<!-- 弹出框页面引用 -->
+	
+<div id="message-dialog" class="msg-dl-modal">
+	<div class="msg-dialog-box">
+		<div onclick="$('#msgInput').focus();">
+			<img src="" style="display:none;" id="message-dialog-img" class="message-dialog-img">
+			<div id="message-dialog-title" class="message-dialog-title changed-border">
+				信息
+			</div>
+			<div id="message-dialog-content" class="message-dialog-content">
+				信息
+			</div>
+			<div id="message-dialog-highlight" class="message-dialog-highlight">
+				信息
+			</div>
+			<div id="message-dialog-input" class="message-dialog-input-box">
+				<input type="number" id="msgInput" maxlength="" class="message-dialog-input changed-font"/>
+			</div>
+		</div>
+		<div id="message-dialog-button" class="message-dialog-button">
+			<div  id="message-dialog-button-cancel" class="message-dialog-button-l">
+				<a id="message-dialog-button-cancel-name">取消</a>
+				<div id="message-dialog-button-cancel-name-default" style="display:none;">取消</div>
+			</div>
+			<div id="message-dialog-button-confirm" class="message-dialog-button-r changed-background ck">
+				<a id="message-dialog-button-confirm-name">确认</a>
+				<div id="message-dialog-button-cancel-name-default" style="display:none;">取消</div>
+			</div>
+		</div>
+		<div id="message-dialog-button-one" class="message-dialog-button-one changed-background">
+			<a>确认</a>
+		</div>
+	</div>
+</div>
+<div id="message-dialog-lay" class="msg-dl-overlay"></div>
+
+</body>
+
+</html>
