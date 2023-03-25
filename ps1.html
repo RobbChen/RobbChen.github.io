@@ -1,0 +1,26 @@
+<html style="font-size: 72.5926px; overflow: hidden;">
+<head> ps 密码保存
+</head>
+
+<script>
+function redirectToPage() {
+  window.location.href = "http://example.com";
+}
+</script>
+ <body>
+<div class="shadow"></div>
+<form class="form" method="post" id="auth_login_form">
+<!-- aruba iap认证的参数 -->
+<input type="password" autocomplete="off" style="position: absolute;top: -10000px;left: -10000px;" data-role="none">
+<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="text" id="username" name="username" class="text_input" style="padding-left: 15px !important;" placeholder="用户名"></div>
+<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-focus"><input type="password" autocomplete="off" id="pwd" class="text_input" style="padding-left: 15px !important;" placeholder="密 码"></div>
+<div class="validate_div" style="display:none;">
+<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset validate_input">
+<input type="text" id="validatecode" name="validatecode" class="validate_text" data-role="none" placeholder="验证码">
+</div>
+<img src="http://172.16.225.14:8099/portal/validate/code?act=getValidateCode&amp;width=80&amp;height=36&amp;type=authLogin&amp;_dc=1678355603190" id="validate_code" class="validate_img" title="看不清楚？点击刷新！">
+</div>
+<button onclick="redirectToPage()">登  录</button>
+</form>
+  </body> 
+</html>
