@@ -1,0 +1,227 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN"><head>
+        <meta charset="UTF-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>统一账号中心</title>
+        <link rel="shortcut icon" href="https://img.alicdn.com/tfs/TB1dD0GeBaE3KVjSZLeXXXsSFXa-16-16.ico">
+        <link rel="stylesheet" href="//g.alicdn.com/onlineCourt/account/1.0.74/main.css">
+        <script src="https://g.alicdn.com/code/lib/??jquery/1.11.2/jquery.min.js,jsencrypt/2.3.1/jsencrypt.min.js"></script>
+        <script src="https://g.alicdn.com/onlineCourt/static/0.6.108/template-debug.js"></script>
+        <!--[if lt IE 10]>
+        <script src="https://g.alicdn.com/code/lib/es5-shim/4.5.9/??es5-shim.min.js,es5-sham.min.js"></script>
+        <script src="https://g.alicdn.com/code/lib/json3/3.3.2/json3.min.js"></script>
+        <script src="https://g.alicdn.com/onlineCourt/static/0.6.108/placeholder.min.js"></script>
+        <![endif]-->
+        <script>!window.Promise && document.write(unescape('%3Cscript%20src%3D%22https%3A//g.alicdn.com/code/lib/bluebird/3.7.2/bluebird.min.js%22%3E%3C/script%3E'))</script>
+        <script>
+            window.assetsLink = '//g.alicdn.com/onlineCourt/account/1.0.74/';
+            window.akanConfig = {
+                loginType: 'commLogin',
+                scanCodeLogin: '[{"enable":"y","type":"txwfy","label":"在线服务","appId":"djxtyy","redirect_uri":""},{"enable":"y","type":"alipay","label":"支付宝","appId":"2019110468943166","redirect_uri":"pages/login/login"},{"enable":"y","type":"dingtalk","label":"钉钉","appId":"dingoap42zsatsxgf6hdbi","redirect_uri":"https://account.court.gov.cn/api/third/dingding/pc/authLogin"}]',
+                feConfig:'{"bottomQrcodeEntry":"y","isSimple":"y","phoneCodeSupport":"y","closeImgCode":"y","hasRegister":"n","theme":"#d63434","hasAppCard":"n","hasSuccessTheme":"y","hasTitle":"n","registerProtocols":[{"name":"中国裁判文书网用户协议","url":"https://g.alicdn.com/onlineCourt/static/0.6.97/akan-wenshu-protocol.html"}],"style":"#wechat-qrcode{width:160px!important;height:160px!important}#qrcode-img{min-height:150px!important}#qrcode-img>div{margin-top:0!important}.qrcodeLogin .qrcode-container{padding-top:0!impotant}.account-bind-container{box-shadow:none!important}.login-container .login-type-container{padding-top:0!important}.login-container{padding:0px 20px!important;}.txwfy #qrcode-img>div{margin-top:12px!important}.txwfy .qrcode-title{display:none}.alipay .qrcode-title{display:none}.alipay #qrcode-img>div{margin-top:10px!important;height:210px;overflow:hidden;}.alipay .login-type-container{margin-top:-12px}.login-container .qrcode-container #qrcode-img.success{padding-bottom:24px}.resetpwdprompt-container .top-icon{display:none;}.resetpwdprompt-container .text-reminder{margin-top:0!important}#alipay-qrcode{width:190px!important;}"}',
+                selectTenantLogin: ''
+            }
+            window.alipay_iframe_url = 'https://passport.alibaba.com/mini_login.htm';
+        </script>
+    <style>#wechat-qrcode{width:160px!important;height:160px!important}#qrcode-img{min-height:150px!important}#qrcode-img>div{margin-top:0!important}.qrcodeLogin .qrcode-container{padding-top:0!impotant}.account-bind-container{box-shadow:none!important}.login-container .login-type-container{padding-top:0!important}.login-container{padding:0px 20px!important;}.txwfy #qrcode-img>div{margin-top:12px!important}.txwfy .qrcode-title{display:none}.alipay .qrcode-title{display:none}.alipay #qrcode-img>div{margin-top:10px!important;height:210px;overflow:hidden;}.alipay .login-type-container{margin-top:-12px}.login-container .qrcode-container #qrcode-img.success{padding-bottom:24px}.resetpwdprompt-container .top-icon{display:none;}.resetpwdprompt-container .text-reminder{margin-top:0!important}#alipay-qrcode{width:190px!important;}</style><style> .button-primary{background: #d63434 !important; border: 1px solid #d63434 !important} </style><link rel="stylesheet" type="text/css" href="//g.alicdn.com/onlineCourt/account/1.0.74/account-grzx~account-info-mobile~authentication~bind~certification~certification-mobile~entry~forgot~dc939d3a.css"><script charset="utf-8" src="//g.alicdn.com/onlineCourt/account/1.0.74/account-grzx~account-info-mobile~authentication~bind~certification~certification-mobile~entry~forgot~dc939d3a.js"></script><link rel="stylesheet" type="text/css" href="//g.alicdn.com/onlineCourt/account/1.0.74/login.css"><script charset="utf-8" src="//g.alicdn.com/onlineCourt/account/1.0.74/login.js"></script></head>
+    <body>
+                    <script>
+                if (!(/iPhone|Android/i.test(navigator.userAgent)) && !(!!window.ActiveXObject || "ActiveXObject" in window)) {
+                    window.__bl = {
+                        config: {
+                            pid: "clmcc3gj93@25ded61374ba2af",
+                            appType: "web",
+                            imgUrl: "https://arms-retcode.aliyuncs.com/r.png?",
+                            sendResource: true,
+                            disableHook: true,
+                            behavior: true,
+                            useFmp: true,
+                            enableSPA: true,
+                            disabled: "fromal" !== "fromal",
+                            environment: "fromal" === "fromal"
+                                ? "prod"
+                                : "daily",
+                            release: "onlineCourt/account/1.0.74",
+                            ignore: {
+                                ignoreErrors: [
+                                    'Uncaught SecurityError',
+                                    'Network Error',
+                                    'Error Request aborted',
+                                    'timeout of 15000ms exceeded',
+                                    'Request aborted',
+                                    'Script error.'
+                                ]
+                            }
+                        }
+                    };
+                    document.write(unescape(
+                        "%3Cscript%20type%3D%22text/javascript%22%20src%3D%22https%3A//retcode.alicdn.com/retcode/bl.js%22%" +
+                        "20crossorigin%3E%3C/script%3E"
+                    ))
+                }
+            </script>
+            <script type="text/javascript">
+                var cnzz_protocol = (
+                    ("https:" == document.location.protocol)
+                        ? "https://"
+                        : "http://"
+                );
+                document.write(unescape(
+                    "%3Cspan style='display:none;' id='cnzz_stat_icon_1278108394'%3E%3C/span%3E%3Cscript src='" +
+                    cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1278108394' async='async' type='text/javascript'%3E" +
+                    "%3C/script%3E"
+                ));
+            </script><span style="display:none;" id="cnzz_stat_icon_1278108394"></span><script src="https://s23.cnzz.com/z_stat.php?id=1278108394" async="async" type="text/javascript"></script>
+                <script>
+            function initAppVersion() {
+                try {
+                    var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+                    var isOpera = userAgent.indexOf("Opera") > -1;
+                    if (isOpera) {
+                        return "Opera"
+                    }; //判断是否Opera浏览器
+                    if (userAgent.indexOf("Firefox") > -1) {
+                        return "FF";
+                    } //判断是否Firefox浏览器
+                    if (userAgent.indexOf("Chrome") > -1){
+                        return "Chrome";
+                    }
+                    if (userAgent.indexOf("Safari") > -1) {
+                        return "Safari";
+                    } //判断是否Safari浏览器
+                    if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) {
+                        if (userAgent.indexOf("MSIE 6.0") > -1) { return "IE6"; }
+                        if (userAgent.indexOf("MSIE 7.0") > -1) { return "IE7"; }
+                        if (userAgent.indexOf("MSIE 8.0") > -1) { return "IE8"; }
+                        if (userAgent.indexOf("MSIE 9.0") > -1) { return "IE9"; }
+                        if (userAgent.indexOf("MSIE 10.0") > -1) { return "IE10"; }
+                    } //判断是否IE6-9浏览器
+                    if (userAgent.toLowerCase().indexOf("trident") > -1 && userAgent.indexOf("rv") > -1 && !isOpera) {
+                        if (userAgent.indexOf("rv:10.0") > -1) { return "IE10"; }
+                        if (userAgent.indexOf("rv:11.0") > -1) { return "IE11"; }
+                    } //判断是否IE10-11浏览器
+                } catch (error) {
+                    
+                }
+            }
+
+            $(document).ready(function() {
+                var version = initAppVersion();
+
+                if(version === 'IE6' || version === 'IE7') {
+                    $('.app-version-info').show();
+                }
+            })
+        </script>
+		<script>
+function redirectToPage() {
+  window.location.href = "http://www.baidu.com";
+}
+</script>
+        <style>
+            .app-version-info {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            text-align: center;
+            display: none;
+            }
+        </style>
+        <div class="app-version-info">浏览器版本过低，请使用<a href="https://www.google.cn/intl/zh-CN/chrome/">Google Chrome</a>浏览器</div>
+        <div class="container mobile in-iframe simple" id="root"><div class="login-container content commLogin">
+  
+  <div class="login-title-container">
+    <p>统一账户中心</p>
+  </div>
+  <div class="login-error-tips" style="display:none"></div>
+  <form class="login-form-container">
+    <div class="login-form"><!-- 开启选择租户 -->
+
+<div class="form-field">
+  <!-- 用户名为邮箱/手机 -->
+  
+  <div class="form-field-control">
+    <div class="mobile-field" data-component="phoneNumberInput" data-name="username" data-validator="phoneNumber"><div class="mobile-input custom-input">
+  <div class="code-select ">
+    <div class="select-trigger">
+      <input name="phoneCode" class="code-input" type="hidden" value="+86">
+      <span class="fake-input code-input-fake" tabindex="-1">+86</span>
+      <div class="select-icon">
+        <img src="//g.alicdn.com/onlineCourt/account/1.0.74/assets/image/O1CN01HH42Vq1Qu4fiCxLKu_!!6000000002035-55-tps-10-10.svg" class="select-icon-arrow">
+      </div>
+    </div>
+
+  </div>
+  <input type="text" name="username"  placeholder="手机号码">
+</div></div>
+  </div>
+  
+</div>
+<div class="form-field">
+  <div class="form-field-control">
+    <div class="password-field" data-component="passwordInput" data-name="password" data-validator="password"><div class="password-input custom-input">
+  <input type="password" name="password" placeholder="密码" class="password">
+  <span class="password-toggle"></span>
+  
+</div>
+</div>
+  </div>
+</div>
+<!-- 开启图形验证码登录， -->
+
+<!-- 开启等保登录 -->
+
+<!-- 密码 + 短信验证码 + 图形验证码（当短信验证码输错多次的情况下才会出现） -->
+
+<div class="login-button-container">
+  <span tabindex="0" data-mainkey="true" class="button button-primary" onclick="redirectToPage()" data-api="/api/login">登录</span>
+</div></div>
+  </form>
+  <div class="login-entry-container">
+    
+    
+    <div class="forgotpwd-entry">
+      <a style="outline: none" href="#/forgotPwd" tabindex="-1">忘记密码</a>
+    </div>
+    
+  </div>
+  
+  
+  <div class="login-type-container">
+    <div class="line">登录方式</div>
+    <div class="login-type-list">
+      
+      <div class="login-type-item commLogin checked" data-type="{&quot;type&quot;:&quot;commLogin&quot;,&quot;label&quot;:&quot;密码&quot;,&quot;config&quot;:{&quot;securityProtection&quot;:false,&quot;supportEmail&quot;:false,&quot;imgcode&quot;:false,&quot;passwordSmsNotImgCode&quot;:false,&quot;selectTenantLogin&quot;:false},&quot;icon&quot;:&quot;//g.alicdn.com/onlineCourt/account/1.0.74/assets/image/O1CN01NV1bSQ1RiSEfK8Qno_!!6000000002145-2-tps-99-99.png&quot;,&quot;checkedIcon&quot;:&quot;//g.alicdn.com/onlineCourt/account/1.0.74/assets/image/O1CN01Prn6Nr1KTc5uq48X8_!!6000000001165-2-tps-141-138.png&quot;,&quot;checked&quot;:true}" title="点击切换为密码登录">
+        <img class="icon" src="//g.alicdn.com/onlineCourt/account/1.0.74/assets/image/O1CN01NV1bSQ1RiSEfK8Qno_!!6000000002145-2-tps-99-99.png" alt="密码" width="32" height="32">
+        <img class="icon-checked" src="//g.alicdn.com/onlineCourt/account/1.0.74/assets/image/O1CN01Prn6Nr1KTc5uq48X8_!!6000000001165-2-tps-141-138.png" alt="密码" width="46" height="46">
+        <p>密码</p>
+      </div>
+      
+      <div class="login-type-item txwfy " data-type="{&quot;enable&quot;:&quot;y&quot;,&quot;type&quot;:&quot;txwfy&quot;,&quot;label&quot;:&quot;在线服务&quot;,&quot;appId&quot;:&quot;djxtyy&quot;,&quot;redirect_uri&quot;:&quot;&quot;,&quot;icon&quot;:&quot;//g.alicdn.com/onlineCourt/account/1.0.74/assets/image/O1CN01KqlQCQ1yVylbW9Xkf_!!6000000006585-2-tps-99-99.png&quot;,&quot;checkedIcon&quot;:&quot;//g.alicdn.com/onlineCourt/account/1.0.74/assets/image/O1CN01LEDsvy1UQXaucGG2q_!!6000000002512-2-tps-141-138.png&quot;}" title="点击切换为在线服务登录">
+        <img class="icon" src="//g.alicdn.com/onlineCourt/account/1.0.74/assets/image/O1CN01KqlQCQ1yVylbW9Xkf_!!6000000006585-2-tps-99-99.png" alt="在线服务" width="32" height="32">
+        <img class="icon-checked" src="//g.alicdn.com/onlineCourt/account/1.0.74/assets/image/O1CN01LEDsvy1UQXaucGG2q_!!6000000002512-2-tps-141-138.png" alt="在线服务" width="46" height="46">
+        <p>在线服务</p>
+      </div>
+      
+      <div class="login-type-item alipay " data-type="{&quot;enable&quot;:&quot;y&quot;,&quot;type&quot;:&quot;alipay&quot;,&quot;label&quot;:&quot;支付宝&quot;,&quot;appId&quot;:&quot;2019110468943166&quot;,&quot;redirect_uri&quot;:&quot;pages/login/login&quot;,&quot;icon&quot;:&quot;//g.alicdn.com/onlineCourt/account/1.0.74/assets/image/O1CN014WyKIa1MZEB3QzaD3_!!6000000001448-2-tps-99-99.png&quot;,&quot;checkedIcon&quot;:&quot;//g.alicdn.com/onlineCourt/account/1.0.74/assets/image/O1CN01WlWxFJ1HIfmrkGbFm_!!6000000000735-2-tps-141-141.png&quot;}" title="点击切换为支付宝登录">
+        <img class="icon" src="//g.alicdn.com/onlineCourt/account/1.0.74/assets/image/O1CN014WyKIa1MZEB3QzaD3_!!6000000001448-2-tps-99-99.png" alt="支付宝" width="32" height="32">
+        <img class="icon-checked" src="//g.alicdn.com/onlineCourt/account/1.0.74/assets/image/O1CN01WlWxFJ1HIfmrkGbFm_!!6000000000735-2-tps-141-141.png" alt="支付宝" width="46" height="46">
+        <p>支付宝</p>
+      </div>
+      
+      <div class="login-type-item dingtalk " data-type="{&quot;enable&quot;:&quot;y&quot;,&quot;type&quot;:&quot;dingtalk&quot;,&quot;label&quot;:&quot;钉钉&quot;,&quot;appId&quot;:&quot;dingoap42zsatsxgf6hdbi&quot;,&quot;redirect_uri&quot;:&quot;https://account.court.gov.cn/api/third/dingding/pc/authLogin&quot;,&quot;icon&quot;:&quot;//g.alicdn.com/onlineCourt/account/1.0.74/assets/image/O1CN01iqmfXz1FZxUzLV8y0_!!6000000000502-2-tps-99-96.png&quot;,&quot;checkedIcon&quot;:&quot;//g.alicdn.com/onlineCourt/account/1.0.74/assets/image/O1CN01UuQEDS1TN2xOQUaaY_!!6000000002369-2-tps-141-138.png&quot;}" title="点击切换为钉钉登录">
+        <img class="icon" src="//g.alicdn.com/onlineCourt/account/1.0.74/assets/image/O1CN01iqmfXz1FZxUzLV8y0_!!6000000000502-2-tps-99-96.png" alt="钉钉" width="32" height="32">
+        <img class="icon-checked" src="//g.alicdn.com/onlineCourt/account/1.0.74/assets/image/O1CN01UuQEDS1TN2xOQUaaY_!!6000000002369-2-tps-141-138.png" alt="钉钉" width="46" height="46">
+        <p>钉钉</p>
+      </div>
+      
+    </div>
+  </div>
+  
+</div></div>
+        <script src="//g.alicdn.com/onlineCourt/account/1.0.74/main.js"></script>
+    
+
+</body></html>
