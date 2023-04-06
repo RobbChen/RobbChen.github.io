@@ -1,0 +1,368 @@
+<header>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta charset="utf-8">
+   <style type=text/css>
+     // Etc
+
+body {
+  display: grid;
+  grid-template:
+    "😄 😄 😄 😄" auto
+    "🚀 🚀 🚀  ↕️" 500px
+    " 🖼 🖼 🖼 ↕️" auto
+    "👟 👟 👟 👟" auto /
+    1fr 1fr 1fr 200px;
+  
+  font-family: system-ui;
+  }
+
+img {
+  width: 100%;
+}
+
+.sidebar h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.25px;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+figcaption,
+h3 {
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.25px;
+  margin: 0.5rem 1rem 0;
+}
+
+.price {
+  display: block;
+  font-size: 14px;
+  margin: 0 1rem;
+}
+
+.product p {
+  margin-top: 1rem;
+  font-size: 13px;
+  color: #555;
+  margin: 0.5rem 1rem 0;
+}
+
+header {
+  grid-area: 😄;
+  background: #c2ceb0;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1,
+.menu {
+  font-size: 1.5rem;
+}
+
+button {
+  border: none;
+  display: block;
+  background: white;
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.25px;
+  padding: 0.25rem 0.5rem;
+  margin: 1rem auto;
+  cursor: pointer;
+  background: #c2ceb0;
+}
+
+.sidebar {
+  grid-area: ↕️;
+  border-left: 1px solid #c2ceb0;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.sidebar .product + .product {
+  margin-top: 0.5rem;
+}
+
+.main {
+  grid-area: 🖼;
+  padding: 2rem 3rem;
+  display: grid;
+  grid-gap: 4rem 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+footer {
+  grid-area: 👟;
+  background: #333;
+  color: white;
+  display: flex;
+  gap: 4rem;
+  padding: 2rem;
+  line-height: 2;
+  z-index: 2;
+}
+
+footer h3 {
+  font-size: 3rem;
+  font-weight: 200;
+}
+
+footer a {
+  color: white;
+}
+
+.hero {
+  grid-area: 🚀;
+  position: relative;
+}
+
+.hero-image {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.hero-image h2 {
+  position: absolute;
+  top: 4rem;
+  right: 0;
+  left: 0;
+  width: 100%;
+  font-size: 4rem;
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 0.5rem;
+}
+
+.hero-image img {
+  object-fit: cover;
+  height: 100%;
+}
+
+// CQ
+
+.product {
+  container-type: inline-size;
+}
+
+// Macro layout
+.hero .product {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  // Slot the product card into a size
+  width: 350px;
+  background: white;
+}
+
+// Smaller version (ie. sidebar in this demo)
+@container (max-width: 200px) {
+  .product-container {
+    border: 1px solid #c2ceb0;
+    padding: 0.5rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .product-container h3 {
+    letter-spacing: 0;
+    width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre;
+    margin: 0;
+  }
+  
+  .product-container span {
+    margin: 0;
+  }
+  
+  .product-container p,
+  .product-container button {
+    display: none;
+  }
+}
+
+// wider sizes (i.e in hero)
+@container (min-width: 350px) {
+  .product-container {
+    padding: 0.5rem 0 0;
+    display: flex;
+  }
+  
+  .product button {
+    margin-left: 1rem;
+  }
+}
+
+  </style>
+  <h1>The Brooklyn Garden</h1>
+  <div class="menu">☰</div>
+
+</header>
+<div class="hero">
+  <figure class="hero-image">
+    <img src="https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=709&q=80" alt="small cactus on a pink background">
+    <h2>Work from home with a new plant friend.</h2>
+  </figure>
+  <div class="product">
+    <div class="product-container">
+      <figure><img src="https://www.ikea.com/us/en/images/products/fejka-artificial-potted-plant-indoor-outdoor-cactus__0935865_PE792997_S5.JPG?f=xs" />
+      </figure>
+      <div>
+        <h3>Cactus</h3>
+        <span class="price">$16.99</span>
+        <p>This plant is a very good one. There is a product description that talks about plant care and other details here.</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="product">
+    <div class="product-container">
+      <figure><img src="https://www.ikea.com/us/en/images/products/fejka-artificial-potted-plant-with-pot-indoor-outdoor-succulent__0614211_PE686835_S5.JPG?f=xs" />
+      </figure>
+      <div>
+        <h3>Succulent</h3>
+        <span class="price">$8.99</span>
+        <p>This plant is a very good one. There is a product description that talks about plant care and other details here.
+        </p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </div>
+  <div class="product">
+    <div class="product-container">
+      <figure><img src="https://www.ikea.com/us/en/images/products/fejka-artificial-potted-plant-indoor-outdoor-monstera__0614197_PE686822_S5.JPG?f=xs" />
+      </figure>
+      <div>
+        <h3>Monstera</h3>
+        <span class="price">$32.99</span>
+        <p>This plant is a very good one. There is a product description that talks about plant care and other details here.
+        </p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </div>
+  <div class="product">
+    <div class="product-container">
+      <figure><img src="https://www.ikea.com/us/en/images/products/fejka-artificial-potted-plant-indoor-outdoor-palm__0797076_PE766755_S5.JPG?f=xs" />
+      </figure>
+      <div>
+        <h3>Succulent</h3>
+        <span class="price">$24.99</span>
+        <p>This plant is a very good one. There is a product description that talks about plant care and other details here.
+        </p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </div>
+  <div class="product">
+    <div class="product-container">
+      <figure><img src="https://www.ikea.com/us/en/images/products/fejka-artificial-potted-plant-indoor-outdoor-hanging-ivy__0898086_PE782558_S5.JPG?f=xs" />
+      </figure>
+      <div>
+        <h3>Potted Ivy</h3>
+        <span class="price">$19.99</span>
+        <p>This plant is a very good one. There is a product description that talks about plant care and other details here.
+        </p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </div>
+  <div class="product">
+    <div class="product-container">
+      <figure><img src="https://www.ikea.com/us/en/images/products/kapkrusbaer-hanging-planter-gray-green__0919747_PE789482_S5.JPG?f=xs" />
+      </figure>
+      <div>
+        <h3>Hanging Pot</h3>
+        <span class="price">$14.99</span>
+        <p>This plant is a very good one. There is a product description that talks about plant care and other details here.
+        </p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </div>
+  <div class="product">
+    <div class="product-container">
+      <figure><img src="https://www.ikea.com/us/en/images/products/graeddaepple-plant-pot-indoor-outdoor-pink-white__0952322_PE804311_S5.JPG?f=xs" />
+      </figure>
+      <div>
+        <h3>Pink Planter</h3>
+        <span class="price">$14.99</span>
+        <p>This plant is a very good one. There is a product description that talks about plant care and other details here.
+        </p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </div>
+  <div class="product">
+    <div class="product-container">
+      <figure><img src="https://www.ikea.com/us/en/images/products/fejka-artificial-potted-plant-indoor-outdoor-cactus__0935865_PE792997_S5.JPG?f=xs" />
+      </figure>
+      <div>
+        <h3>Cactus</h3>
+        <span class="price">$16.99</span>
+        <p>This plant is a very good one. There is a product description that talks about plant care and other details here.</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--   Sidebar   -->
+<div class="sidebar">
+  <h2>Recently Viewed:</h2>
+  <div class="product">
+    <div class="product-container">
+      <figure><img src="https://www.ikea.com/us/en/images/products/fejka-artificial-potted-plant-indoor-outdoor-palm__0797076_PE766755_S5.JPG?f=xs" />
+      </figure>
+      <div>
+        <h3>Palm Plant</h3>
+        <span class="price">$24.99</span>
+        <p>This plant is a very good one. There is a product description that talks about plant care and other details here.</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </div>
+  <div class="product">
+    <div class="product-container">
+      <figure><img src="https://www.ikea.com/us/en/images/products/fejka-artificial-potted-plant-indoor-outdoor-monstera__0614197_PE686822_S5.JPG?f=xs" />
+      </figure>
+      <div>
+        <h3>Monstera</h3>
+        <span class="price">$32.99</span>
+        <p>This plant is a very good one. There is a product description that talks about plant care and other details here.</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <h3>Location</h3>
+    <p>113 Brooklyn Street<br>
+      Brooklyn NY 11223<br><br>
+      Monday-Saturday 10-6PM<br>
+      Sunday 12-5PM</p>
+  </div>
+  <div>
+    <h3>Get in Touch</h3>
+    <ul>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">TikTok</a></li>
+      <li><a href="#">Facebook</a></li>
+    </ul>
+  </div>
+</footer>
