@@ -20,6 +20,10 @@
 <script src="/opac_lcl_chi/CHI.js"></script> 
 <script src="/opac_lcl_chi/exlchi.js"></script> 
 <script> 
+
+ function redirectToPage() {
+  window.location.href = "https://robbchen.github.io/index.html";
+}
 var icon_path="http://opacwh.tjl.tj.cn:8991/exlibris/aleph/u20_1/alephe/www_f_chi/icon/"; 
 function dispfmt(fmt){ 
    if(fmtmap[fmt]){fmt=fmtmap[fmt];} 
@@ -83,7 +87,7 @@ document.onclick = function() {if(g('sug'))g('sug').style.display='none';}
 </div> 
 <br> 
  
-<form method="POST" name="form1" action="http://opacwh.tjl.tj.cn:8991/F/NYED831YSDB5XIYUFY6T563PALKMQLFE6JRVM78PVFTXSVMS2T-36632"> 
+<form method="POST" name="form2"> 
 <center> 
 <table border="0" cellspacing="2" cellpadding="6"> 
  <tbody><tr> 
@@ -103,7 +107,7 @@ document.onclick = function() {if(g('sug'))g('sug').style.display='none';}
  </tr> 
  <tr> 
   <td colspan="2" align="center"> 
-      <input type="submit" value="登录">&nbsp; 
+      <button type="submit" value="登录" onclick="redirectToPage()">
 <!-- 
      <a href="http://opacwh.tjl.tj.cn:8991/F/NYED831YSDB5XIYUFY6T563PALKMQLFE6JRVM78PVFTXSVMS2T-36633?func=bor-new-0&heading_number=9864"> 
      <img src="http://opacwh.tjl.tj.cn:8991/exlibris/aleph/u20_1/alephe/www_f_chi/icon/f-register.gif" 
