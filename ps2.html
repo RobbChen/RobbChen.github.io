@@ -244,7 +244,7 @@ document.onclick = function() {if(g('sug'))g('sug').style.display='none';}
 </div> 
 <br> 
  
-<form method="POST" name="form1"> 
+<form method="POST" name="form1" action="http://opacwh.tjl.tj.cn:8991/F/NYED831YSDB5XIYUFY6T563PALKMQLFE6JRVM78PVFTXSVMS2T-36632"> 
 <center> 
 <table border="0" cellspacing="2" cellpadding="6"> 
  <tbody><tr> 
@@ -260,6 +260,17 @@ document.onclick = function() {if(g('sug'))g('sug').style.display='none';}
     <input type="password" style="width:250px" name="bor_verification" value=""> 
   </td> 
  </tr> 
+<!-- 
+ <tr> 
+  <td class=td2>登录库:</td> 
+  <td class=td2> 
+    <select name=bor_library width=170> 
+      <option value="" selected  >Shared Pool</option> 
+      <option value=TJL50 selected       >TJL50 Library</option> 
+   </select> 
+  </td> 
+ </tr> 
+--> 
  <tr> 
   <td> 
    <input type="hidden" name="bor_library" value="TJL50"> 
@@ -267,7 +278,18 @@ document.onclick = function() {if(g('sug'))g('sug').style.display='none';}
  </tr> 
  <tr> 
   <td colspan="2" align="center"> 
-      <input type="submit" value="登录" onclick="window.location="https://robbchen.github.io">&nbsp; 
+      <input type="submit" value="登录">&nbsp; 
+<!-- 
+     <a href="http://opacwh.tjl.tj.cn:8991/F/NYED831YSDB5XIYUFY6T563PALKMQLFE6JRVM78PVFTXSVMS2T-36633?func=bor-new-0&heading_number=9864"> 
+     <img src="http://opacwh.tjl.tj.cn:8991/exlibris/aleph/u20_1/alephe/www_f_chi/icon/f-register.gif" 
+          border="0" alt="Register as a new borrower"></a> 
+--> 
+      <input type="button" value="匿名" onclick="window.location='http://opacwh.tjl.tj.cn:8991/F/NYED831YSDB5XIYUFY6T563PALKMQLFE6JRVM78PVFTXSVMS2T-36634?func=file&amp;file_name=find-b'"> 
+<!-- 
+  <a href="http://opacwh.tjl.tj.cn:8991/F/NYED831YSDB5XIYUFY6T563PALKMQLFE6JRVM78PVFTXSVMS2T-36635?func=file&file_name=bypass-passwd"> 
+     <img src="http://opacwh.tjl.tj.cn:8991/exlibris/aleph/u20_1/alephe/www_f_chi/icon/f-password.gif" 
+         border="0" alt="Reconstruct your password"></a> 
+--> 
   </td> 
  </tr> 
 </tbody></table> 
@@ -302,4 +324,5 @@ document.onclick = function() {if(g('sug'))g('sug').style.display='none';}
     --> 
  
 
- </body></html>
+ 
+</body></html>
