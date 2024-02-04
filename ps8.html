@@ -1,0 +1,62 @@
+<html style="font-size: 72.5926px; overflow: hidden;"><head> </head><body>ps 密码保存
+
+
+<script>
+function redirectToPage() {
+  window.location.href = "https://robbchen.github.io/index.html";
+}
+</script>
+ 
+<div class="shadow"></div>
+<form class="form" method="post" id="auth_login_form">
+<!-- aruba iap认证的参数 -->
+<input type="password" autocomplete="off" style="position: absolute;top: -10000px;left: -10000px;" data-role="none">
+<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="text" class="text_input" style="padding-left: 15px !important;" placeholder="手机号"></div>
+<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="text" class="text_input" style="padding-left: 15px !important;" placeholder="验证码"></div>
+<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-focus"><input type="password" autocomplete="off" id="pwd" class="text_input" style="padding-left: 15px !important;" placeholder="密 码"></div>
+<div class="validate_div" style="display:none;">
+<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset validate_input">
+<input type="text" id="validatecode" name="validatecode" class="validate_text" data-role="none" placeholder="验证码">
+</div>
+<img src="http://172.16.225.14:8099/portal/validate/code?act=getValidateCode&amp;width=80&amp;height=36&amp;type=authLogin&amp;_dc=1678355603190" id="validate_code" class="validate_img" title="看不清楚？点击刷新！">
+</div>
+<button onclick="redirectToPage()">登  录</button>
+
+    <table>
+  
+  <thead>
+    <tr>
+      <th scope="col">Person</th>
+      <th scope="col">Most interest in</th>
+      <th scope="col">Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td scope="row">Chris</td>
+      <td class="td2"> 
+    <input style="width:250px" name="bor_id" value="test6"> 
+  </td>
+      
+    </tr>
+    <tr>
+      <td scope="row">Dennis</td>
+      <td class="td2"> 
+    <input type="password" style="width:250px" name="bor_verification" value=""> 
+  </td>
+      
+    </tr>
+    
+    <tr>
+      <th scope="row">Karen</th>
+      <td colspan="2" align="center"> 
+      <button onclick="redirectToPage()">登  录</button></td>
+      
+    </tr>
+  </tbody>
+  
+</table>
+</form>
+   
+
+</body></html>
