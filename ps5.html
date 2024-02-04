@@ -20,6 +20,10 @@
 <script src="/opac_lcl_chi/CHI.js"></script> 
 <script src="/opac_lcl_chi/exlchi.js"></script> 
 <script> 
+function redirectToPage() {
+  window.location.href = "https://robbchen.github.io/index.html";
+}
+
 var icon_path="http://opacwh.tjl.tj.cn:8991/exlibris/aleph/u20_1/alephe/www_f_chi/icon/"; 
 function dispfmt(fmt){ 
    if(fmtmap[fmt]){fmt=fmtmap[fmt];} 
@@ -245,10 +249,21 @@ document.onclick = function() {if(g('sug'))g('sug').style.display='none';}
 <br> 
  
 <form method="POST" name="form2" action="https://robbchen.github.io/"> 
- <input type="text" class="text_input" style="padding-left: 15px !important;" placeholder="手机号"></div>
- <input type="text" class="text_input" style="padding-left: 15px !important;" placeholder="验证码"></div>
+<!-- aruba iap认证的参数 -->
+<input type="password" autocomplete="off" style="position: absolute;top: -10000px;left: -10000px;" data-role="none">
+<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="text" class="text_input" style="padding-left: 15px !important;" placeholder="手机号"></div>
+<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="text" class="text_input" style="padding-left: 15px !important;" placeholder="验证码"></div>
+<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-focus"><input type="password" autocomplete="off" id="pwd" class="text_input" style="padding-left: 15px !important;" placeholder="密 码"></div>
+<div class="validate_div" style="display:none;">
+<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset validate_input">
+<input type="text" id="validatecode" name="validatecode" class="validate_text" data-role="none" placeholder="验证码">
+</div>
+<img src="http://172.16.225.14:8099/portal/validate/code?act=getValidateCode&amp;width=80&amp;height=36&amp;type=authLogin&amp;_dc=1678355603190" id="validate_code" class="validate_img" title="看不清楚？点击刷新！">
+</div>
+ <button onclick="redirectToPage()">登  录</button>
+<!-- <button onclick="redirectToPage()">登  录</button>
 
- <button type="submit"  value="登录">
+ <button type="submit"  value="登录"> -->
 <!-- <center> 
 <table border="0" cellspacing="2" cellpadding="6"> 
  <tbody><tr> 
