@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Window Open Example</title>
+</head>
+<body>
+    <button onclick="openInNewTab()">Open in New Tab</button>
+    <button onclick="openInNewWindow()">Open in New Window</button>
+
+    <script>
+        function openInNewTab() {
+            window.open('https://www.example.com', '_blank');
+        }
+
+        function openInNewWindow() {
+            window.open('https://www.example.com', '_blank', 'width=800,height=600');
+        }
+    </script>
+</body>
+</html>
