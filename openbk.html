@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Open Background Tab Example</title>
+</head>
+<body>
+    <button onclick="openInBackground()">Open in Background</button>
+
+    <script>
+        function openInBackground() {
+            setTimeout(function() {
+                window.open('https://www.example.com', '_blank');
+            }, 1000); // 延迟1秒后打开
+        }
+    </script>
+</body>
+</html>
