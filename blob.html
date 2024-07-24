@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blob URL Example</title>
+</head>
+<body>
+    <h1>Blob URL Example</h1>
+    <a id="downloadLink" download="example.txt">Download File</a><br><br>
+    <img id="image" alt="Image from Blob" width="200">
+
+    <script>
+        // 创建一个包含文本内容的 Blob
+        const textBlob = new Blob(["Hello, world! This is an example text."], { type: 'text/plain' });
+
+        // 生成一个 Blob URL
+        const textBlobUrl = URL.createObjectURL(textBlob);
+
+        // 将 Blob URL 赋值给下载链接
+        const downloadLink = document.getElementById('downloadLink');
+        downloadLink.href = textBlobUrl;
+
+        // 创建一个包含图像内容的 Blob (例如从一个数组)
+        const imageBlob = new Blob([/* array of image data */], { type: 'image/png' });
+
+        // 生成一个 Blob URL
+        const imageBlobUrl = URL.createObjectURL(imageBlob);
+
+        // 将 Blob URL 赋值给图像元素
+        const imageElement = document.getElementById('image');
+        imageElement.src = imageBlobUrl;
+    </script>
+</body>
+</html>
