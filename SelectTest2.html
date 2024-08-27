@@ -1,0 +1,258 @@
+<html><head>
+		    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>培训课程</title>
+	<script type="text/javascript" src="https://wp.pep.com.cn/web/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://wp.pep.com.cn/web/views/default/mobile/css/reset.css">
+    <link rel="stylesheet" href="https://wp.pep.com.cn/web/views/default/mobile/css/px2022.css">
+	<script type="text/javascript" src="https://wp.pep.com.cn/web/js/peppassport.js"></script>
+	<script type="text/javascript" src="https://wp.pep.com.cn/web/views/default/mobile/js/jquery.placeholder.js"></script>
+		
+	</head>
+	<body>
+		<div id="bgceng" class="ceng" style="display: none"></div>
+		<!-- 具体页面-->
+		<div class="bg_tcc_pxkc2022" style="display: none;">
+    <div class="nav_tcc_pxkc2022">
+        <ul>
+            <li><a href="https://wp.pep.com.cn/web/index.php?/px/index/135">培训课程</a></li>
+            			            <li><a href="https://wp.pep.com.cn/web/index.php?/user/showStu/135">学习数据</a></li>
+                                    <li><a href="https://wp.pep.com.cn/web/index.php?/user/showInfo/135">报名信息</a></li>
+            <li><a href="https://wp.pep.com.cn/web/index.php?/px/qa/135">常见问题</a></li>
+            <li><a href="https://wp.pep.com.cn/web/index.php?/pxcom/index/0">网培用户中心</a></li>
+            <li><a href="javascript:void(0);" onclick="chkLogout();">退出登录</a></li>
+        </ul>
+    </div>
+</div>
+<div class="container_user_qd_px2022 margin_lf_3">
+    <div class="con_menu_px2022">
+        <img src="https://wp.pep.com.cn/web/views/default/mobile/img/icon_menu_px2022.png" alt=""> 菜单
+    </div>
+    <div class="con_user_qd_px2022">
+        <img src="https://wp.pep.com.cn/web/views/default/mobile/img/icon_user_top_px2022.png" alt="">刘佳&nbsp;&nbsp;
+    </div></div>
+<script>
+$(function() {
+    $(".con_menu_px2022").click(function() {
+        $(".bg_tcc_pxkc2022").show();
+    })
+
+    $("body").click(function(e) {
+        if (!$(e.target).closest(".nav_tcc_pxkc2022,.con_menu_px2022").length) {
+            $(".bg_tcc_pxkc2022").hide()
+        }
+    });
+})
+function chkLogout() {
+	if (confirm("您确定要退出吗？")) {
+		window.location.href = "https://wp.pep.com.cn/web/index.php?/login/logout/135";
+	}
+}
+</script>	<div id="notice" class="bg_comfirm_px2022_notice" style="display:none;">
+		<div class="bg_notice_close_px2022">
+					</div>
+        <div class="container_comfirm_px2022">
+			<h4></h4>
+            <div class="con_comfirm_px2022" style="max-height:400px;overflow-y:auto;overflow-x:hidden;">
+                <ul>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container_comfirm_px2022" style="padding:1em 0;border-radius:0 0 2em 2em;">
+            <div class="con_comfirm_submit_px2022" style="margin-top:0;">
+				<a id="iknow" href="javascript:void(0);" onclick="showOtherPage('','', this);">
+					关闭				</a>
+            </div>
+        </div>
+    </div>
+	<script>
+		$(function(){
+			if('1' == 0) {
+				$('.ceng').show();
+				$(".bg_comfirm_px2022_notice").show();
+			}
+			$(".btn_close_tzgg").click(function(){
+				$(".container_comfirm_px2022").hide();
+				$('.ceng').hide();
+				$("#notice").hide();
+			})
+			$('.con_ckxq_tzgg_gztb2020b').click(function () {
+				$(".container_tzgg_gztb2020b").hide();
+				$('.ceng').hide();
+			})
+		})
+		function showOtherPage(btn_css, btn_url, obj) {
+			// 设置已读
+			$.ajax({
+				url: "https://wp.pep.com.cn/web/index.php?/px/setReadNotice/135//1317",
+				type: "POST",
+				dataType: "json",
+				async:false,
+				data:{ajax:1},
+				success: function(data) {
+					console.log(data);
+				}
+			});
+			if (btn_url) {
+				$(obj).attr('target', '_blank');
+				$(obj).attr('href', btn_url);
+			}
+			$(".container_comfirm_px2022").hide();
+			$('.ceng').hide();
+			$("#notice").hide();
+		}
+	</script>
+<div class="container_title_pxkc_px2022">
+    <h4>2024年人教版义务教育新教材网络培训会</h4>
+</div>
+<div class="container_pxkc_pxgg_px2022">
+	<a href="https://wp.pep.com.cn/web/index.php?/px/noticeList/135">公告</a>
+</div>
+
+<div class="container_select_qd_px2022 margin_lf_3">
+		<select name="sid" id="classid" style="width:240px;" onchange="showPage();">
+		<option value="1317">小学数学</option>
+	</select>
+	</div>
+<script>
+	function changeSubjectExtra() {
+		var stage = $('#stage').val();
+		var temp_html = "";
+		if (stage > 0) {
+			$.ajax({
+				url: "https://wp.pep.com.cn/web/index.php?/user/changeSubjectLimit/135/",
+				type: "POST",
+				dataType: "json",
+				async: false,
+				data: {ajax:1},
+				success: function(data) {
+					if(data.errno == -1) {
+						alert(data.errmsg);
+						$referer = encodeURIComponent();
+						window.location.href = 'https://wp.pep.com.cn/web/index.php?/login/index/135/0/https%3A%2F%2Fwp.pep.com.cn%2Fweb%2Findex.php%3F%2Fpx%2Findex%2F135';
+						return false;
+					}
+					$.each(data,function(i,e){
+						if (i == stage) {
+							$.each(e, function(ii, ee){
+								temp_html+="<option value='"+ee.sid+"'>"+ee.subjectname+"</option>";
+							});
+							return false;
+						}
+					});
+				},
+				error:function () {
+					alert('获取学科失败');
+				}
+			});
+		}
+		$('#sid').html(temp_html);
+		showPage();
+	}
+</script>   
+<div class="bg_kcap_px2022">
+   	    	    	
+    	<!-- 直播/回放模板 -->
+					<!-- 直播/回放模板 -->
+<div class="container_kcap_px2022">
+    <h4 class=""><img src="https://wp.pep.com.cn/web/views/default/mobile/img/icon_live_px2022.png" alt="">小学数学<i></i></h4>
+    <h6>&nbsp;</h6>
+    <div class="container_list_pxkc_px2022" style="display: none;">
+    	            			<!-- 其余显示直播结束 -->
+			<div class="list_pxkc_px2022">
+				<h5 class="">
+	                <img src="https://wp.pep.com.cn/web/views/default/mobile/img/icon_hf_px2022.png" alt=""><span>【直播结束】</span>
+	                <a class="txt_gray">新教材整体解读</a>
+	            </h5>
+	                	                        	<div class="content_pxkc_px2022">
+                     <p>8月20日上午9:00-12:00<span>李海东</span></p>
+            	</div>
+                                        	</div>
+			                    			<!-- 其余显示直播结束 -->
+			<div class="list_pxkc_px2022">
+				<h5 class="">
+	                <img src="https://wp.pep.com.cn/web/views/default/mobile/img/icon_hf_px2022.png" alt=""><span>【直播结束】</span>
+	                <a class="txt_gray">一年级上册教材分析及教学建议</a>
+	            </h5>
+	                	                            <ul>
+                	<li>
+	                 	<p class="showtime_lesson">8月20日下午14:00-17:30</p>
+                        <p class="txt_gray">胡雪丹</p>
+                       </li>
+                   </ul>
+                                         	</div>
+			                    			<!-- 其余显示直播结束 -->
+			<div class="list_pxkc_px2022">
+				<h5 class="">
+	                <img src="https://wp.pep.com.cn/web/views/default/mobile/img/icon_hf_px2022.png" alt=""><span>【直播结束】</span>
+	                <a class="txt_gray">配套教师教学用书使用建议</a>
+	            </h5>
+	                	                        	<div class="content_pxkc_px2022">
+                     <p>8月21日上午9:00-12:00<span>刘加霞</span></p>
+            	</div>
+                                        	</div>
+			            </div>
+</div>
+		<!-- 视频/回放模板 -->
+				
+    	   	       <div class="content_pxxz_px2022">
+           <div class="title_pxxz_px2022">
+               <h4 style="margin-left: -59.05px;">培训须知</h4>
+           </div>
+           <p>培训开始时，请点击页面上方课表“进入培训”按钮，进入培训页面，请勿使用倍速播放。</p>
+<p>请您确保本地网络畅通，观看过程中如果出现视频卡顿、黑屏等情况，尝试刷新培训页面、重新进入培训，或者更换其他浏览器。</p>
+<p>技术支持咨询电话：400-075-9043，服务时间：工作日9:00-11:30，13:30-17:00。</p>
+       </div>
+</div>
+<script>
+	$(function() {
+		$(".container_kcap_px2022 h4").toggleClass("active");
+		$(".container_kcap_px2022 h4").siblings(".container_list_pxkc_px2022").slideToggle(0);
+		$(".container_kcap_px2022 h4").click(function() {
+			$(this).toggleClass("active");
+			$(this).siblings(".container_list_pxkc_px2022").slideToggle(500);
+		})
+
+		$(".title_pxxz_px2022 h4").css("marginLeft", -$(".title_pxxz_px2022 h4").innerWidth() / 2 + "px");
+		
+		// 定时刷新页面
+		if ("0" > 0) {
+			timer = setInterval(function () {
+				clearInterval(timer);
+				window.location.reload();
+			}, "0");
+		}
+		
+
+	})
+	
+	function showPage() {
+		if(1 == 1) {
+			var classid = $('#classid').val();
+			window.location.href = 'https://wp.pep.com.cn/web/index.php?/px/index/135/0/0/' + classid;
+		}else{
+			var sid = $('#sid').val();
+			var stage = $('#stage').val();
+			window.location.href = 'https://wp.pep.com.cn/web/index.php?/px/index/135/' + sid + '/' +stage;
+		}
+	}
+    </script>		<!-- footer -->
+		<div class="container_footer_px2022">
+	<p>©版权所有&nbsp;&nbsp;人民教育出版社</p>
+	<p>京ICP备05019902号 </p>
+	<p><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010802038276" target="_blank" style=""><img src="https://wp.pep.com.cn/web/views/default/mobile/img/beian.png" style="padding:0px;width:18px;">京公网安备 11010802038276号</a></p>
+</div>
+<script src="https://bd-st.mypep.cn/js/points-u.js"></script>
+<script>
+	window.onload = function(){
+		pepPoints.loader.dataReport({
+			product_id: '302',    // 人教教师培训服务平台product_id
+			company: '135',  // company
+			active_user: '39094616'
+		});
+	}
+</script>	
+<img src="https://bd-st.mypep.cn/img/stat.gif?2~1724470664505~~~302~dpi:482*770~deviceId:178014689-0fa482562e684b1f9fd7bbdfd53655b8~b-type:chrome_114.0.5735.196_android~39094616~~~~~~wp.pep.com.cn~135~sys_200001~11~wp.pep.com.cn/web/index.php~/px/index/135~~178014689-1906cff90bfa45428cec37a6d34400e4~~" style="display: none;">
+<img src="https://bd-st.mypep.cn/img/stat.gif?2~1724730278440~~~302~dpi:1920*1080~deviceId:178199846-3078bd500181452280c2bd9c14a225e6~b-type:chrome_127.0.0.0_win~39094616~~~~~~robbchen.github.io~135~sys_200001~11~robbchen.github.io/SelectTest1.html~~~178199846-f5201bf0c6464ef8b17c05f0bc936306~~" style="display: none;"></body></html>
