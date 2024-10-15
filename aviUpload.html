@@ -1,0 +1,28 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="upload-file" type="file" />
+    <br />
+    ==================
+    <br />
+    上传的文件信息：
+    <p id="file-info"></p>
+  </body>
+  <script>
+    const btn = document.querySelector("#upload-file");
+    btn.addEventListener("change", function () {
+      const file = this.files[0];
+      console.log("上传了", this.files[0], Object.keys(this.files[0]));
+      let text = "";
+      for (const key in file) {
+        text += `${key}: ${file[key]}<br/>`;
+      }
+      document.querySelector("#file-info").innerHTML = text;
+    });
+  </script>
+</html>
